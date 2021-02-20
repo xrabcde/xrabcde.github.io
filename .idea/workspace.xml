@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f9e3610a-e5b9-4eff-becd-c0d96a0b370e" name="Default Changelist" comment="Update profile">
+    <list default="true" id="f9e3610a-e5b9-4eff-becd-c0d96a0b370e" name="Default Changelist" comment="Update title and bio">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_includes/nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/_includes/nav.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_layouts/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_sass/elements.scss" beforeDir="false" afterPath="$PROJECT_DIR$/_sass/elements.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_sass/typography.scss" beforeDir="false" afterPath="$PROJECT_DIR$/_sass/typography.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_sass/variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/_sass/variables.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +52,7 @@
       <updated>1613792505350</updated>
       <workItem from="1613792509145" duration="13878000" />
       <workItem from="1613821464722" duration="778000" />
-      <workItem from="1613825497968" duration="1688000" />
+      <workItem from="1613825497968" duration="2790000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Setting">
       <created>1613795502808</created>
@@ -130,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613821755324</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Update title and bio">
+      <created>1613827330679</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1613827330679</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,6 +163,7 @@
     <MESSAGE value="post: GitHub 블로그 로컬환경에서 테스트하기" />
     <MESSAGE value="Initial Setting (Change Repository)" />
     <MESSAGE value="Update profile" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update profile" />
+    <MESSAGE value="Update title and bio" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update title and bio" />
   </component>
 </project>
