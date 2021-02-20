@@ -1,6 +1,7 @@
 # Site
-title:              Ara Jo
-bio:                'Keeping a record of my days'
+title:              '바다쓰기'
+name:               Ara Jo
+bio:                '바다쓰기, written by Bada'
 description:        "Aspiring Backend Developer :)"
 reading_time:       true
 words_per_minute:   200
