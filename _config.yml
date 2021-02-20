@@ -1,7 +1,7 @@
 # Site
 title:              Ara Jo
-bio:                'Aspiring Backend Developer :)'
-description:        "Keeping a record of my days"
+bio:                'Keeping a record of my days'
+description:        "Aspiring Backend Developer :)"
 reading_time:       true
 words_per_minute:   200
 logo:               'assets/img/logo.jpg'
