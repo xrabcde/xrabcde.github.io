@@ -47,6 +47,7 @@ List<String> lowCaloricDishesName =
 스트림에는 다음과 같은 두 가지 중요 특징이 있다.
 - __파이프라이닝__ : 대부분의 스트림 연산은 스트림 연산끼리 연결해서 커다란 파이프라인을 구성할 수 있도록 스트림 자신을 반환한다.
 - __내부 반복__ : 반복자를 이용해서 명시적으로 반복하는 컬렉션과 달리 스트림은 내부 반복을 지원한다.  
+
 ```
 List<String> threeHighCaloricDishNames = 
                     menu.stream() //메뉴에서 스트림 얻기
