@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 모던자바인액션) 2장. 동작 파라미터화 코드 전달하기
+title: Book/모던자바인액션/ 2장. 동작 파라미터화 코드 전달하기
 date: 2021-02-25
 excerpt: "모던자바인액션 2장 내용 공부"
 tags: [book, modern_java_in_action]

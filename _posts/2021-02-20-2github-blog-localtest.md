@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GitHub) 블로그 로컬환경에서 테스트하기
+title: GitHub/ 블로그 로컬환경에서 테스트하기
 date: 2021-02-20
 excerpt: "fork한 github.io의 로컬 작업 환경 구축하기"
 tags: [github, blog]
