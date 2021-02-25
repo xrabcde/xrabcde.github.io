@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f9e3610a-e5b9-4eff-becd-c0d96a0b370e" name="Default Changelist" comment="Update title and bio">
+    <list default="true" id="f9e3610a-e5b9-4eff-becd-c0d96a0b370e" name="Default Changelist" comment="Change selection color">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_sass/elements.scss" beforeDir="false" afterPath="$PROJECT_DIR$/_sass/elements.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_sass/typography.scss" beforeDir="false" afterPath="$PROJECT_DIR$/_sass/typography.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_sass/variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/_sass/variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2021-02-20-2github-blog-localtest.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2021-02-20-2github-blog-localtest.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,9 +36,22 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="CodeWithMe" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -52,7 +63,9 @@
       <updated>1613792505350</updated>
       <workItem from="1613792509145" duration="13878000" />
       <workItem from="1613821464722" duration="778000" />
-      <workItem from="1613825497968" duration="2790000" />
+      <workItem from="1613825497968" duration="3102000" />
+      <workItem from="1613877345706" duration="51000" />
+      <workItem from="1614255691355" duration="5899000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Setting">
       <created>1613795502808</created>
@@ -138,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613827330679</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Change selection color">
+      <created>1613828660740</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1613828660740</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,6 +184,7 @@
     <MESSAGE value="Initial Setting (Change Repository)" />
     <MESSAGE value="Update profile" />
     <MESSAGE value="Update title and bio" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update title and bio" />
+    <MESSAGE value="Change selection color" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change selection color" />
   </component>
 </project>
