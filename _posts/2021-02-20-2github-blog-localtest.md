@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GitHub 블로그 로컬환경에서 테스트하기
+title: GitHub) 블로그 로컬환경에서 테스트하기
 date: 2021-02-20
 excerpt: "fork한 github.io의 로컬 작업 환경 구축하기"
 tags: [github, blog]
@@ -58,7 +58,7 @@ url 수정까지 완료한 뒤 `bundle exec jekyll serve` 명령을 통해 다�
 글로 적으니 굉장히 빨리 이 문제들을 해결한 것 같이 보이지만 블로그를 처음 세팅하는 것부터해서 거의 하루종일이 걸렸다.. 
 앞으로 블로그를 꾸준히 잘 하려면 로컬 서버를 띄우는 방법을 잘 숙지해놓고 있어야할 것 같아서 첫 블로그 글로 이 내용을 정리해보았다.  
 위의 모든 과정은 모두 초기에 한 번만 해주면 되는 것이고, 앞으로는 `_config.yml`에 주석처리 해놓은 url을 바꿔가면서 사용하면 될 것 같다.
-- 로컬 작업 시 
+- 로컬 작업 시
   - url : http://localhost:4000 으로 변경 후
   - `bundle exec jekyll serve` 실행
 - GitHub에 push 할 때는
