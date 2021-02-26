@@ -156,6 +156,10 @@ Comparator<Apple> c = (Apple a1, Apple a2) -> a1.getWeight().compareTo(a2.getWei
 //형식을 추론함
 Comparator<Apple> c = (a1, a2) -> a1.getWeight().compareTo(a2.getWeight());
 ```
+
+### 지역 변수 사용
+람다식에서 지역 변수는 `final`이 붙은 변경불가능한 지역변수만 사용해야 한다.
+
 ## 메서드 참조
 __메서드 참조__ 는 특정 람다 표현식을 축약한 것이라고 생각하면 된다. 메서드 참조를 이용하면 기존의 메서드 정의를 재활용해서 람다처럼 전달할 수 있다.
 ```
