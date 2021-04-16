@@ -39,9 +39,9 @@ for (Transaction t: transactions.subList(1, transactions.size())) {
     }
 }
 ```
-선언형 프로그래밍은 문제 자체가 코드로 명확하게 드러난다는 장점이 있다.  
 
 '어떻게'가 아닌 '무엇을'에 집중하는 방식은 4장과 5장에서 스트림 API를 이용하는 방법으로 적용할 수 있다.
+선언형 프로그래밍은 문제 자체가 코드로 명확하게 드러난다는 장점이 있다.
 ```
 Optional<Transaction> mostExpensive = transactions.stream().max(comparing(Transaction::getValue));
 ``` 
@@ -67,6 +67,7 @@ Optional<Transaction> mostExpensive = transactions.stream().max(comparing(Transa
 이런 경우에는 `Optional<T>` 를 사용하면 문제를 해결할 수 있다. Optional을 사용하면 예외없이도 성공적으로 수행했는지 확인할 수 있지만, 
 호출 결과로 빈 Optional이 반환되는지 확인해야 하는 귀찮은 작업이 추가된다.  
 마지막으로, 함수형에서는 비함수형 동작을 감출 수 있는 상황에서만 부작용을 포함하는 라이브러리 함수를 사용해야 한다.
+자료구조를 복사해서 사용한다거나, 발생할 수 있는 예외를 적절하게 내부적으로 처리하여 자료구조 변경을 호출자가 알 수 없도록 감춘다.
 ### 참조 투명성
 '부작용을 감춰야 한다'라는 제약은 **참조 투명성**이라는 개념으로 귀결된다.
 즉, 같은 인수로 함수를 호출했을 때 항상 같은 결과를 반환한다면 참조적으로 투명한 함수라고 할 수 있다.
