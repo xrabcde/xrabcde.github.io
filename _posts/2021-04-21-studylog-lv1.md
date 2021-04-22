@@ -7,7 +7,7 @@ tags: [woowacourse, study_log]
 comments: false
 ---
 
-# 로또
+# 1. 로또
 ## [JCF] Map - 2
 ### 내용
 - 각 등수별 당첨 개수를 저장하기 위한 자료형이 필요해 사용하게 되었음
@@ -15,8 +15,8 @@ comments: false
 - 총 당첨금액 계산 시 Map Iteration을 위해 `EntrySet` 사용
 
 ### 링크
-- https://ithub.tistory.com/34
-- https://stove99.tistory.com/96
+- [Map 객체, key 또는 value를 사용한 정렬](https://ithub.tistory.com/34)
+- [Java Map 반복(Iteration)시키는 3가지 방법](https://stove99.tistory.com/96)
 
 ## [OOP] Enum - 4
 ### 내용
@@ -24,17 +24,24 @@ comments: false
 - enum에 어디까지 책임을 줘야하는지 결정하는 부분이 어려웠음
 
 ### 링크
-- https://woowabros.github.io/tools/2017/07/10/java-enum-uses.html
+- [Java Enum 활용기](https://woowabros.github.io/tools/2017/07/10/java-enum-uses.html)
 
-# 블랙잭
+# 2. 블랙잭
 ## [OOP] 상속 - 4
 ### 내용
 - Player와 Dealer가 모두 게임의 참가자라는 공통적 속성이 있기 때문에 상속을 활용해 보았음
-- `Dealer is Player`는 맞지만, `Player is Dealer`는 아니기 때문에 Dealer가 Player를 상속받도록 설계
+- `Dealer is Player`는 맞지만, `Player is Dealer`는 아니기 때문에 ~~Dealer가 Player를 상속받도록 설계~~
 - 추상화와 상속 중 어떤 방법을 이용할지 고민했음
 
 ### 링크
 - [`bce1e80`](https://github.com/woowacourse/java-blackjack/pull/121/commits/bce1e804585ad8a6bccdbeda086a08facb61eeec)
+
+## [OOP] 추상화 - 4
+### 내용
+- `Dealer`와 `Player`가 모두 **참가자**라는 공통적 속성을 갖기 때문에 상속관계를 `Participant`라는 추상클래스로 리팩토링
+
+### 링크
+- [`f209a80`](https://github.com/woowacourse/java-blackjack/pull/121/commits/f209a8041140cfae51a622cdb2bbf30ae55ce079)
 
 ## [설계] TDD - 2
 ### 내용
