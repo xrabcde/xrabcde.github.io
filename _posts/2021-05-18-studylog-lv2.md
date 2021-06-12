@@ -118,3 +118,35 @@ comments: false
 - Controller Method invoke
 - `태그` : Spring, Spring MVC
 - [참고링크](https://github.com/binghe819/TIL/blob/master/Spring/MVC/Spring%20MVC%20flow.md)
+
+## 6. 지하철2(로그인/경로조회) - step3
+
+## 7. 지하철3(협업미션)
+### 클래스에 abstract 혹은 final
+- final 클래스 : 클래스에 final을 사용하게 되면 최종상태가 되어 더이상 상속 불가능
+  final 로 선언되면 상속받을 수 없기 때문에 당연히 내부의 모든 메서드는 overriding 될 수 없음
+- 클래스를 설계하는 단계에서 해당 클래스는 상속을 위한 클래스다! 혹은 상속을 고려하지 않는 클래스다! 라는 의도를 전달하는 것이 목적  
+  => 많은 인원으로 프로젝트를 진행하거나, 코드가 장기간 유지보수 되는 경우
+- [참고링크](https://velog.io/@ednadev/%EC%9E%90%EB%B0%94-%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4abstract-class-%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%A9%94%EC%84%9C%EB%93%9C%EC%99%80-final)
+
+### 책임 연쇄 패턴
+- 명령 객체와 일련의 처리 객체를 포함하는 디자인 패턴
+- 체이닝 되어 있는 거리 요금 정책을 추상화하기 위해 사용
+- 각 체인이 다음 계산을 위한 체인을 가짐
+- 요청을 보내는 객체와 이를 처리하는 객체간의 결합도를 느슨하게 하기 위한 방법
+- [참고링크](https://k0102575.github.io/articles/2020-02/chain-of-responsibility-pattern)  
+
+=> 디자인패턴과 abstract/final 모두 **불필요한 커뮤니케이션 없이 코드를 통해 어떠한 목적을 이루고자 했는가를 나타내는 방법!!**
+
+### Transactional
+- **2개 이상의 쿼리를 하나의 커넥션으로 묶어** DB에 전송하고, 이 과정에서 에러가 발생할 경우 자동으로 롤백 처리
+- 데이터의 추가 변경 또는 삭제가 일어나는 C, U, D 메서드에 @Transactional을 추가하여 트랜잭션 설정
+- 단일 작업인 경우, 생략 가능
+- [참고링크](https://mangkyu.tistory.com/50)
+- [참고링크](https://velog.io/@kdhyo/JavaTransactional-Annotation-%EC%95%8C%EA%B3%A0-%EC%93%B0%EC%9E%90-26her30h)
+
+### Exception 전략
+- 통일된 예외 객체를 만들고, ControllerAdvice의 유지보수를 위해 exception을 한단계 추상화한 SubwayException을 만들었음
+- SubwayException에 status 필드를 추가해 각 exception 별로 status를 가질 수 있도록 함
+- ControllerAdvice에서는 SubwayException만 핸들링해주면 된다
+- [참고링크](https://cheese10yun.github.io/spring-guide-exception/)
