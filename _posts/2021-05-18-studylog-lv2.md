@@ -120,6 +120,33 @@ comments: false
 - [참고링크](https://github.com/binghe819/TIL/blob/master/Spring/MVC/Spring%20MVC%20flow.md)
 
 ## 6. 지하철2(로그인/경로조회) - step3
+### Optional 바르게 쓰기
+- isPresent()-get() 대신 orElse()/orElseGet()/orElseThrow()
+- Dao에서 findByEmail과 같이 특정 컬럼으로 회원을 조회할 때 Optional을 사용함
+- `태그` : Spring, Java
+- [참고링크](http://homoefficio.github.io/2019/10/03/Java-Optional-%EB%B0%94%EB%A5%B4%EA%B2%8C-%EC%93%B0%EA%B8%B0/)
+
+### 제네릭과 로 타입
+- `List` 는 제네릭 타입과 무관한 것이고, `List<Object>` 는 모든 타입을 허용한다는 뜻
+- 최단경로 라이브러리를 사용할 때 로타입에 주의해야 함
+- `태그` :  Java, Jgrapht
+- [참고링크](https://madplay.github.io/post/dont-use-raw-types)
+
+### RequestParam과 ModelAttribute
+- `RequestParam`: 사용자가 요청 시 전달하는 값을 Handler의 매개변수로 1:1 매핑할 때 사용되는 어노테이션
+- `ModelAttribute` : 사용자가 요청 시 전달하는 값을 오브젝트 형태로 매핑해주는 어노테이션
+- 전달하는 값이 여러 개인 경우, ModelAttribute을 사용하면 유지보수에 좋음
+- 최단경로 조회 시 출발역과 도착역을 전달하기 위해 ModelAttribute을 적용함
+- `태그` : Spring, Annotation
+- [참고링크](https://galid1.tistory.com/769)
+
+### @Valid
+- `org.springframework.boot:spring-boot-starter-validation` 의존성 추가
+- `@Valid`가 설정된 메서드가 호출될 때 유효성 검사를 진행한다
+- 경로 조회 시 요청 데이터에 대한 검증을 해주기 위해 @NotNull, @Size 등을 적용함
+- `태그` : Spring, Annotation
+- [참고링크1](https://meetup.toast.com/posts/223)
+- [참고링크2](https://gaemi606.tistory.com/entry/Spring-Boot-ResponseBody-%EA%B0%81-%ED%95%AD%EB%AA%A9%EC%97%90-%ED%81%AC%EA%B8%B0-%ED%95%84%EC%88%98-%EA%B0%92-%EC%84%A4%EC%A0%95-spring-boot-starter-validation)
 
 ## 7. 지하철3(협업미션)
 ### 클래스에 abstract 혹은 final
