@@ -165,13 +165,6 @@ comments: false
 
 => 디자인패턴과 abstract/final 모두 **불필요한 커뮤니케이션 없이 코드를 통해 어떠한 목적을 이루고자 했는가를 나타내는 방법!!**
 
-### Transactional
-- **2개 이상의 쿼리를 하나의 커넥션으로 묶어** DB에 전송하고, 이 과정에서 에러가 발생할 경우 자동으로 롤백 처리
-- 데이터의 추가 변경 또는 삭제가 일어나는 C, U, D 메서드에 @Transactional을 추가하여 트랜잭션 설정
-- 단일 작업인 경우, 생략 가능
-- [참고링크](https://mangkyu.tistory.com/50)
-- [참고링크](https://velog.io/@kdhyo/JavaTransactional-Annotation-%EC%95%8C%EA%B3%A0-%EC%93%B0%EC%9E%90-26her30h)
-
 ### Exception 전략
 - 통일된 예외 객체를 만들고, ControllerAdvice의 유지보수를 위해 exception을 한단계 추상화한 SubwayException을 만들었음
 - SubwayException에 status 필드를 추가해 각 exception 별로 status를 가질 수 있도록 함
