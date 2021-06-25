@@ -14,7 +14,9 @@ comments: false
 객체지향 개발에서 **어떤 조건에 따라 코드가 분기되는 이벤트에 활용**할 수 있다.
 
 ## 2. 동작방식
-![img.png](https://t1.daumcdn.net/cfile/tistory/99A62A4B5C5B846036)
+<div style="width:500px !important; margin:0 auto">
+<img src="/assets/img/chaining.png" alt="chaining.png">
+</div>
 
 - Handler : 요청을 받아 처리객체들에게 전달하는 인터페이스. 
 첫 번째 Chain에 대한 정보만 가지고 있으며, 그 이후의 Chain 들은 알지 못한다.
