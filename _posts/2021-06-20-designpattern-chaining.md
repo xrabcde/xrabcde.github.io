@@ -4,7 +4,7 @@ title: Java/디자인패턴 - 책임 연쇄 패턴
 date: 2021-06-20
 excerpt: "JAVA 디자인패턴 중 책임 연쇄 패턴에 대한 정리"
 tags: [java, oop, design_pattern]
-comments: false
+comments: true
 ---
 
 ## 1. 정의

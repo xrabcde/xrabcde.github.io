@@ -4,7 +4,7 @@ title: Book/모던자바인액션/ 18장. 함수형 관점으로 생각하기
 date: 2021-04-15
 excerpt: "모던자바인액션 18장 내용 공부"
 tags: [book, modern_java_in_action]
-comments: false
+comments: true
 ---
 
 ## 시스템 구현과 유지보수

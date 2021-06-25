@@ -4,7 +4,7 @@ title: Book/토비의스프링vol1/ 2장. 테스트
 date: 2021-05-26
 excerpt: "토비의스프링 2장 내용 공부"
 tags: [book, tobi_spring]
-comments: false
+comments: true
 ---
 
 ## 1장에서 작성한 테스트의 특징

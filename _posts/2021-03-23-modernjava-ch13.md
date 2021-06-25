@@ -4,7 +4,7 @@ title: Book/모던자바인액션/ 13장. 디폴트 메서드
 date: 2021-03-23
 excerpt: "모던자바인액션 13장 내용 공부"
 tags: [book, modern_java_in_action]
-comments: false
+comments: true
 ---
 
 인터페이스를 구현하는 클래스는 인터페이스에서 정의하는 모든 메서드 구현을 제공하거나 아니면 부모 클래스의 구현을 상속받아야 한다.

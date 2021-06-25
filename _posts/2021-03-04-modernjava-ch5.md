@@ -4,7 +4,7 @@ title: Book/모던자바인액션/ 5장. 스트림 활용
 date: 2021-03-04
 excerpt: "모던자바인액션 5장 내용 공부"
 tags: [book, modern_java_in_action]
-comments: false
+comments: true
 ---
 
 이번에는 4장에서 살펴본 스트림 API가 지원하는 다양한 연산을 살펴보자.

@@ -4,7 +4,7 @@ title: Book/모던자바인액션/ 8장. 컬렉션 API 개선
 date: 2021-03-09
 excerpt: "모던자바인액션 8장 내용 공부"
 tags: [book, modern_java_in_action]
-comments: false
+comments: true
 ---
 
 이 장에서는 자바 8, 자바 9에서 추가되어 프로그래밍을 더 편리하게 만들어 줄 새로운 컬렉션 API의 기능을 배운다.

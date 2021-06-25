@@ -4,7 +4,7 @@ title: Spring/스프링 입문 강의 정리
 date: 2021-05-04
 excerpt: "코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술"
 tags: [spring, inflearn]
-comments: false
+comments: true
 ---
 
 ## 스프링 웹개발 기초

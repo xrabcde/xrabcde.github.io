@@ -4,7 +4,7 @@ title: Book/모던자바인액션/ 2장. 동작 파라미터화 코드 전달하
 date: 2021-02-25
 excerpt: "모던자바인액션 2장 내용 공부"
 tags: [book, modern_java_in_action]
-comments: false
+comments: true
 ---
 
 동작 파라미터화는 변화하는 요구사항에 유연하게 대응할 수 있게 코드를 구현하는 방법 중 하나로, 메서드 내부적으로 다양한 동작을

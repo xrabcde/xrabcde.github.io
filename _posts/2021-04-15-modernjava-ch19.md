@@ -4,7 +4,7 @@ title: Book/모던자바인액션/ 19장. 함수형 프로그래밍 기법
 date: 2021-04-15
 excerpt: "모던자바인액션 19장 내용 공부"
 tags: [book, modern_java_in_action]
-comments: false
+comments: true
 ---
 ## 일급 함수
 일반값처럼 취급할 수 있는 함수를 **일급 함수**라고 한다. 함수형 프로그래밍 언어에선 함수를 일반값처럼

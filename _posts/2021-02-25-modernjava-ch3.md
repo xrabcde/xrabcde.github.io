@@ -4,7 +4,7 @@ title: Book/모던자바인액션/ 3장. 람다 표현식
 date: 2021-02-25
 excerpt: "모던자바인액션 3장 내용 공부"
 tags: [book, modern_java_in_action]
-comments: false
+comments: true
 ---
 
 2장에서 `동작 파라미터화`를 이용하면 더 유연하고 재사용가능한 코드를 구현할 수 있다는 것을 학습했다.

@@ -4,7 +4,7 @@ title: Book/토비의스프링vol1/ 4장. 예외
 date: 2021-06-15
 excerpt: "토비의스프링 4장 내용 공부"
 tags: [book, tobi_spring]
-comments: false
+comments: true
 ---
 
 - JdbcTemplate을 대표로 하는 스프링의 데이터 엑세스 기능에 담겨 있는 예외 처리와 관련된 접근 방법과 이를 통해 예외를 처리하는 예시를 살펴보자.

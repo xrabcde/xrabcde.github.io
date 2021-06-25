@@ -4,7 +4,7 @@ title: Book/모던자바인액션/ 7장. 병렬 데이터 처리와 성능
 date: 2021-03-09
 excerpt: "모던자바인액션 7장 내용 공부"
 tags: [book, modern_java_in_action]
-comments: false
+comments: true
 ---
 
 이 장에서는 스트림으로 데이터 컬렉션 관련 동작을 얼마나 쉽게 병렬로 실행할 수 있는지 알아보자.

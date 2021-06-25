@@ -4,7 +4,7 @@ title: Book/모던자바인액션/ 9장. 리팩토링, 테스팅, 디버깅
 date: 2021-03-09
 excerpt: "모던자바인액션 9장 내용 공부"
 tags: [book, modern_java_in_action]
-comments: false
+comments: true
 ---
 
 람다 표현식을 이용해 가독성과 유연성을 높이려면 기존 코드를 어떻게 리팩터링해야 하는지 알아보자.

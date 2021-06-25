@@ -4,7 +4,7 @@ title: Book/토비의스프링vol1/ 1장. 오브젝트와 의존관계
 date: 2021-05-14
 excerpt: "토비의스프링 1장 내용 공부"
 tags: [book, tobi_spring]
-comments: false
+comments: true
 ---
 
 ## 템플릿 메서드 패턴

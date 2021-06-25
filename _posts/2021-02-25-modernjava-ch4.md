@@ -4,7 +4,7 @@ title: Book/모던자바인액션/ 4장. 스트림 소개
 date: 2021-02-25
 excerpt: "모던자바인액션 4장 내용 공부"
 tags: [book, modern_java_in_action]
-comments: false
+comments: true
 ---
 
 컬렉션을 그룹화한다든가 최댓값을 찾는 등의 연산에서 `스트림`을 이용하면 코드를 더 간결하게 만들 수 있다.

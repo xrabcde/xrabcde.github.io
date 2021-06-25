@@ -4,7 +4,7 @@ title: 우테코/LV1 학습로그 정리
 date: 2021-04-21
 excerpt: "우아한테크코스 레벨 1기간 동안의 학습로그"
 tags: [woowacourse, study_log]
-comments: false
+comments: true
 ---
 
 # 1. 로또

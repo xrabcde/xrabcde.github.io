@@ -4,7 +4,7 @@ title: GitHub/ 블로그 로컬환경에서 테스트하기
 date: 2021-02-20
 excerpt: "fork한 github.io의 로컬 작업 환경 구축하기"
 tags: [github, blog]
-comments: false
+comments: true
 ---
 
 처음 깃헙블로그를 만들면서 로컬환경을 구축하는 과정에서 생각보다 과정이 복잡하고 오래 걸려서 나중에 헷갈릴 때 다시 보기 위해 기록한다. 

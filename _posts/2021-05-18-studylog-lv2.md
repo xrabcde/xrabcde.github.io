@@ -4,7 +4,7 @@ title: 우테코/LV2 학습로그 정리
 date: 2021-05-18
 excerpt: "우아한테크코스 레벨 2기간 동안의 학습로그"
 tags: [woowacourse, study_log]
-comments: false
+comments: true
 ---
 
 ## 1. 체스 - step1,2

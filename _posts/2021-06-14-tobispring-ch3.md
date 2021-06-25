@@ -4,7 +4,7 @@ title: Book/토비의스프링vol1/ 3장. 템플릿
 date: 2021-06-14
 excerpt: "토비의스프링 3장 내용 공부"
 tags: [book, tobi_spring]
-comments: false
+comments: true
 ---
 
 - **OCP(개방 폐쇄 원칙)** : 확장에는 자유롭게 열려 있고 변경에는 굳게 닫혀 있다는 객체지향 설계의 핵심 원칙

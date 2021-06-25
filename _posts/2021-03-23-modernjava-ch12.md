@@ -4,7 +4,7 @@ title: Book/모던자바인액션/ 12장. 새로운 날짜와 시간 API
 date: 2021-03-23
 excerpt: "모던자바인액션 12장 내용 공부"
 tags: [book, modern_java_in_action]
-comments: false
+comments: true
 ---
 
 자바 8에서는 지금까지의 날짜와 시간 문제를 개선하는 새로운 날짜와 시간 API를 제공한다.

@@ -4,7 +4,7 @@ title: Book/모던자바인액션/ 11장. null 대신 Optional 클래스
 date: 2021-03-10
 excerpt: "모던자바인액션 11장 내용 공부"
 tags: [book, modern_java_in_action]
-comments: false
+comments: true
 ---
 
 자바로 프로그램을 개발하면서 한 번도 `NullPointerException`을 겪지 못한 사람은 없을 것이다.

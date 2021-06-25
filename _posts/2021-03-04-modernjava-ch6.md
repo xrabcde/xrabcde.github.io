@@ -4,7 +4,7 @@ title: Book/모던자바인액션/ 6장. 스트림으로 데이터 수집
 date: 2021-03-04
 excerpt: "모던자바인액션 6장 내용 공부"
 tags: [book, modern_java_in_action]
-comments: false
+comments: true
 ---
 
 명령형 프로그래밍이 아닌 __함수형 프로그래밍__ 을 이용하면 더 편리하고 명확한 프로그래밍을 할 수 있다.
