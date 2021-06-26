@@ -82,4 +82,6 @@ repo에 `계정명/저장소이름` 을 입력하고 블로그 포스트와 이�
 이제 블로그 하단에 GitHub 계정으로 댓글을 달 수 있는 부분이 추가되었고 
 작성한 댓글은 댓글 Repository에 Issue로 잘 생성되고 있다!
 
-
+<div style="width:700px !important; margin:0 auto">
+<img src="/assets/img/comments8.png" alt="comments8.png">
+</div>
