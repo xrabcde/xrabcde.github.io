@@ -16,7 +16,7 @@ comments: true
 - 데이터(패킷)를 보내기 위해 사용하는 프로토콜
 - 두 프로토콜 모두 패킷을 한 컴퓨터에서 다른 컴퓨터로 전달해주는 IP 프로토콜을 기반으로 구현되어 있음
 
-<div style="width:500px !important; margin:0 auto">
+<div style="width:100% !important; margin:0 auto">
 <img src="/assets/img/tcpudp1.png" alt="tcpudp1.png">
 </div>
 
@@ -57,7 +57,7 @@ comments: true
 
 
 ### TCP 연결 및 해제 과정
-<div style="width:500px !important; margin:0 auto">
+<div style="width:100% !important; margin:0 auto">
 <img src="/assets/img/tcpudp2.png" alt="tcpudp2.png">
 </div>
 
@@ -112,7 +112,7 @@ comments: true
 - 데이터 오류 검사를 위한 CheckSum 존재
 
 ### 차이점
-<div style="width:600px !important; margin:0 auto">
+<div style="width:100% !important; margin:0 auto">
 <img src="/assets/img/tcpudp5.png" alt="tcpudp5.png">
 </div>
 

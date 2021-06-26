@@ -14,7 +14,7 @@ comments: true
 객체지향 개발에서 **어떤 조건에 따라 코드가 분기되는 이벤트에 활용**할 수 있다.
 
 ## 2. 동작방식
-<div style="width:500px !important; margin:0 auto">
+<div style="width:100% !important; margin:0 auto">
 <img src="/assets/img/chaining.png" alt="chaining.png">
 </div>
 
