@@ -8,7 +8,7 @@ comments: true
 ---
 
 <div style="width:100% !important; margin:0 auto">
-<img src="/assets/img/web_process1.png" alt="tcpudp1.png">
+<img src="/assets/img/web_process1.jpg" alt="web_process1.jpg">
 </div>
 
 
