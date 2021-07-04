@@ -7,12 +7,12 @@ tags: [csstudy, network]
 comments: true
 ---
 
-<div style="width:100% !important; margin:0 auto">
+<div style="width:70% !important; margin:0 auto">
 <img src="/assets/img/https1.png" alt="https1.png">
 </div>
 
 ## 대칭키 암호화 방식 : 하나의 키로 암복호화 (ex. 자물쇠)
-<div style="width:100% !important; margin:0 auto">
+<div style="width:90% !important; margin:0 auto">
 <img src="/assets/img/https2.png" alt="https2.png">
 </div>
 
@@ -26,14 +26,14 @@ comments: true
 - 공개키 암호화 방식은 아래 두 가지 방식이 있다
 
 1) 데이터 암복호화 : 데이터를 공개키로 암호화 -> 개인키로 복호화
-  <div style="width:100% !important; margin:0 auto">
+  <div style="width:90% !important; margin:0 auto">
   <img src="/assets/img/https3.png" alt="https3.png">
   </div>
   - 다수의 사람들이 공개키로 데이터를 암호화한 다음 개인키를 가지고 있는 사람에게 데이터를 안전하게 전송
   - ex. 편지함 (사람들은 편지함 투입구를 통해 누구나 편지를 넣을 수 있지만, 열쇠를 가진 사람만이 편지함을 열 수 있다)
 
 2) 전자서명 : 데이터를 개인키로 암호화 -> 공개키로 복호화
-  <div style="width:100% !important; margin:0 auto">
+  <div style="width:90% !important; margin:0 auto">
   <img src="/assets/img/https4.png" alt="https4.png">
   </div>
 
@@ -49,7 +49,7 @@ comments: true
 - 과정 : 클라이언트는 웹 서버의 80번 포트로 TCP 커넥션을 연다 -> HTTP 요청 메시지를 보낸다 -> 서버로부터 HTTP 응답 메시지를 받는다
 -> TCP 커넥션을 닫는다  
 => 문제점 : 서버에서부터 브라우저로 전송되는 정보가 암호화되지 않음, 즉 **데이터가 쉽게 도난당할 수 있음**
-<div style="width:100% !important; margin:0 auto">
+<div style="width:60% !important; margin:0 auto">
 <img src="/assets/img/https5.png" alt="https5.png">
 </div>
 
@@ -68,7 +68,7 @@ SSL 계층에서 클라이언트의 HTTP 요청 메시지는 TCP로 보내지기
   통신을 하는 브라우저와 웹 서버가 서로 암호화 통신을 시작할 수 있도록 신분을 확인하고, 필요한
   정보를 클라이언트와 서버가 주거니 받거니 하는 과정
 
-  <div style="width:100% !important; margin:0 auto">
+  <div style="width:80% !important; margin:0 auto">
   <img src="/assets/img/https6.png" alt="https6.png">
   </div>
 
