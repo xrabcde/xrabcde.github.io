@@ -67,6 +67,6 @@ ACK와 NAK 모두 각각 구별해야 함
 ---
 
 ### 출처
-- [참고링크1]()
-- [참고링크2]()
-- [참고링크3]()
+- [참고링크1](https://woovictory.github.io/2018/12/28/Network-Erro-Flow-Control/)
+- [참고링크2 - 오류제어](http://www.ktword.co.kr/abbr_view.php?nav=&m_temp1=1299&id=772)
+- [참고링크3 - 흐름제어](http://www.ktword.co.kr/abbr_view.php?m_temp1=392)
