@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Network/웹 동작 방식
+title: Network/전체/웹 동작 방식
 date: 2021-06-28
 excerpt: "컴퓨터 네트워크 스터디 #2 웹 동작 방식"
 tags: [csstudy, network]

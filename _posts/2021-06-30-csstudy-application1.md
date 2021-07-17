@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Network/응용계층 프로토콜
+title: Network/응용계층/응용계층 프로토콜
 date: 2021-06-30
-excerpt: "컴퓨터 네트워크 스터디 #3 응용계층 프로토콜"
+excerpt: "컴퓨터 네트워크 스터디 #3 Application layer - 응용계층 프로토콜"
 tags: [csstudy, network]
 comments: true
 ---

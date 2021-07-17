@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Network/흐름제어와 오류제어
+title: Network/전송계층/흐름제어와 오류제어
 date: 2021-07-08
-excerpt: "컴퓨터 네트워크 스터디 #5 흐름제어와 오류제어"
+excerpt: "컴퓨터 네트워크 스터디 #5 Transport layer - 흐름제어와 오류제어"
 tags: [csstudy, network]
 comments: true
 ---

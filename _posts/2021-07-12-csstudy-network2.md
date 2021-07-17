@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Network/라우팅 프로토콜, 브로드캐스트, 멀티캐스트, 유니캐스트
+title: Network/네트워크계층/라우팅 프로토콜, 브로드캐스트, 멀티캐스트, 유니캐스트
 date: 2021-07-14
-excerpt: "컴퓨터 네트워크 스터디 #7 라우팅프로토콜(RIP, OSPF, BGP), DHCP, 브로드캐스트, 멀티캐스트, 유니캐스트"
+excerpt: "컴퓨터 네트워크 스터디 #7 Network layer - 라우팅프로토콜(RIP, OSPF, BGP), DHCP, 브로드캐스트, 멀티캐스트, 유니캐스트"
 tags: [csstudy, network]
 comments: true
 ---

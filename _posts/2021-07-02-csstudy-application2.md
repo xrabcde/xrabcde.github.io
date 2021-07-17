@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Network/HTTPS 동작 원리
+title: Network/응용계층/HTTPS 동작 원리
 date: 2021-07-02
-excerpt: "컴퓨터 네트워크 스터디 #4 HTTPS 동작 원리"
+excerpt: "컴퓨터 네트워크 스터디 #4 Application layer - HTTPS 동작 원리"
 tags: [csstudy, network]
 comments: true
 ---

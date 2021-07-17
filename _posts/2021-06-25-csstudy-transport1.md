@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Network/TCP vs UDP
+title: Network/전송계층/TCP vs UDP
 date: 2021-06-25
-excerpt: "컴퓨터 네트워크 스터디 #1 TCP vs UDP"
+excerpt: "컴퓨터 네트워크 스터디 #1 Transport layer - TCP vs UDP"
 tags: [csstudy, network]
 comments: true
 ---

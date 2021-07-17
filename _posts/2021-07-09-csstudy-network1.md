@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Network/IP주소와 서브넷
+title: Network/네트워크계층/IP주소와 서브넷
 date: 2021-07-09
-excerpt: "컴퓨터 네트워크 스터디 #6 IP주소와 서브넷"
+excerpt: "컴퓨터 네트워크 스터디 #6 Network layer - IP주소와 서브넷"
 tags: [csstudy, network]
 comments: true
 ---
