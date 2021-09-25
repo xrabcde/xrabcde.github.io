@@ -20,7 +20,7 @@ $ vi backup.sh
 #!/bin/bash
 DATE=$(date +%Y%m%d)
 BACKUP_DIR=/home/ubuntu/backup_auto/
-mysqldump -u root -p 1234 zzimkkong > $BACKUP_DIR"backup_"$DATE.sql
+mysqldump -uroot -p1234 zzimkkong > $BACKUP_DIR"backup_"$DATE.sql
 
 find $BACKUP_DIR -ctime +3 -exec rm -f {} \;
 ```
@@ -41,7 +41,7 @@ find $BACKUP_DIR -ctime +3 -exec rm -f {} \;
 - 쉘 스크립트 파일에 실행 권한 주기
 
 ```bash
-$ chmod 554 backup.sh
+$ chmod 754 backup.sh
 ```
 
 ## 2. crontab 을 이용하여 스크립트 자동 실행
