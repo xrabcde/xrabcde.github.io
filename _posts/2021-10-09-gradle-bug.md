@@ -45,7 +45,7 @@ Window에서 IntelliJ에 Git Bash Terminal을 사용중이었는데 `./gradlew c
 이렇게 Git Bash에 명령어를 입력하는 것으로 gradle build 로그가 깨지는 것을 해결할 수 있으나 설정을 완전히 바꿔주는 것이 아니므로
 IntelliJ를 껐다가 켜면 다시 그 전과 같이 로그가 깨져 보이게 된다. 
 이 현상을 완전히 해결하려면 [위 코멘트](https://github.com/gradle/gradle/issues/13279#issuecomment-925523692)에 나와있던대로
-`~./bashrc` 파일을 수정해주어야 한다.
+`~/.bashrc` 파일을 수정해주어야 한다.
 
 <div style="width:80% !important; margin:0 auto">
 <img src="/assets/img/gradlebug5.png" alt="gradlebug5.png">
