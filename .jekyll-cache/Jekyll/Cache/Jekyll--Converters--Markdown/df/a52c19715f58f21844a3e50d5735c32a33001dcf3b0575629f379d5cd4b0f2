@@ -1,0 +1,152 @@
+I"25<p>이 장에서는 자바 8, 자바 9에서 추가되어 프로그래밍을 더 편리하게 만들어 줄 새로운 컬렉션 API의 기능을 배운다.</p>
+<h2 id="컬렉션-팩토리">컬렉션 팩토리</h2>
+<p><code class="language-plaintext highlighter-rouge">Arrays.asList()</code> 팩토리 메서드로 리스트를 만들면 코드를 간단하게 줄일 수 있지만, 요소의 추가/삭제가 불가능하다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>List&lt;String&gt; friends = Arrays.asList("Raphael", "Olivia", "Thibaut");
+friends.set(0, "Richard");
+friends.add("Thibaut");
+</code></pre></div></div>
+<p>요소를 갱신하는 작업은 괜찮지만 요소를 추가하려 하면 <code class="language-plaintext highlighter-rouge">Unsupported OperationException</code>이 발생한다.</p>
+<h3 id="리스트-팩토리">리스트 팩토리</h3>
+<p><code class="language-plaintext highlighter-rouge">List.of</code> 팩토리 메서드를 이용해서 간단하게 리스트를 만들 수 있다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>List&lt;String&gt; friends = List.of("Raphael", "Olivia", "Thibaut");
+friends.add("Chih-Chun");
+</code></pre></div></div>
+<p>하지만, 역시 요소를 추가하려하면 <code class="language-plaintext highlighter-rouge">Unsupported OperationException</code>이 발생한다.
+컬렉션이 의도치 않게 변하는 것을 막기 위해 변경할 수 없는 리스트가 만들어졌기 때문이다.</p>
+<h3 id="집합-팩토리">집합 팩토리</h3>
+<p><code class="language-plaintext highlighter-rouge">List.of</code>와 비슷한 방법으로 바꿀 수 없는 집합을 만들 수 있다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Set&lt;String&gt; friends = Set.of("Raphael", "Olivia", "Thibaut");
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">Set.of</code>에 중복된 요소를 넣으면 <code class="language-plaintext highlighter-rouge">IllegalArgumentException</code>이 발생한다. 집합은 중복 요소를 포함할 수 없기 때문이다.</p>
+<h3 id="맵-팩토리">맵 팩토리</h3>
+<p>맵을 만드려면 키와 값이 있어야 하기 때문에, 맵은 리스트나 집합보다는 조금 복잡하다.
+자바 9에서 바꿀 수 없는 맵을 초기화하는 방법은 2가지가 있다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Map&lt;String, Integer&gt; ageOfFriends = Map.of("Raphael", 30, "Olivia", 25, "Thibaut", 26);
+</code></pre></div></div>
+<p>10개 이하의 키와 쌍을 갖는 작은 맵을 만들 때는 이 메소드가 유용하지만, 그 이상의 맵에서는
+<code class="language-plaintext highlighter-rouge">Map.Entry&lt;K,V&gt;</code> 객체를 인수로 받으며 가변 인수로 구현된 <code class="language-plaintext highlighter-rouge">Map.ofEntries</code> 팩토리 메서드를 이용하는 것이 좋다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Map&lt;String, Integer&gt; ageOfFriends = Map.ofEntries(entry("Raphael", 30),
+                                                  entry("Olivia", 25),
+                                                  entry("Thibaut", 26));                                                 
+</code></pre></div></div>
+
+<h2 id="리스트와-집합-처리">리스트와 집합 처리</h2>
+<p>자바 8에서는 List, Set 인터페이스에 다음과 같은 메서드를 추가했다.</p>
+<ul>
+  <li>removeIf: 프레디케이트를 만족하는 요소를 제거한다. List나 Set을 구현하거나 그 구현을 상속받은 모든 클래스에서 이용할 수 있다.</li>
+  <li>replaceAll: 리스트에서 이용할 수 있는 기능으로 UnaryOperator 함수를 이용해 요소를 바꾼다.</li>
+  <li>sort : List 인터페이스에서 제공하는 기능으로 리스트를 정렬한다.</li>
+</ul>
+
+<h3 id="removeif-메서드">removeIf 메서드</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//기존 코드
+for (Iterator&lt;Transaction&gt; iterator = transactions.iterator();iterator.hasNext();) {
+    Transaction transaction = iterator.next();
+    if(Character.isDigit(transaction.getReferenceCode().charAt(0))) {
+        iterator.remove();
+    }
+}
+//removeIf를 통해 개선한 코드
+transactions.removeIf(transaction -&gt;
+    Character.isDigit(transaction.getReferenceCode().charAt(0)));
+</code></pre></div></div>
+<h3 id="replaceall-메서드">replaceAll 메서드</h3>
+<p>List 인터페이스의 <code class="language-plaintext highlighter-rouge">replaceAll</code>을 이용하면 리스트의 각 요소를 새로운 요소로 바꿀 수 있다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>referenceCodes.stream()
+              .map(code -&gt; Character.toUpperCase(code.charAt(0)) + code.subString(1))
+              .collect(Collectors.toList())
+              .forEach(System.out::println);
+</code></pre></div></div>
+<p>하지만 이 코드는 새 문자열 컬렉션을 만든다. 우리가 원하는 것은 기존 컬렉션을 바꾸는 것이므로 replaceAll을 이용해 개선해보자.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>referenceCodes.replaceAll(code -&gt; Character.toUpperCase(code.charAt(0)) + code.subString(1));
+</code></pre></div></div>
+
+<h2 id="맵-처리">맵 처리</h2>
+<h3 id="foreach-메서드">forEach 메서드</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//기존 코드
+for(Map.Entry&lt;String, Integer&gt; entry : ageOfFriends.entrySet()) {
+    String friend = entry.getKey();
+    Integer age = entry.getValue();
+    System.out.println(friend + " is " + age + " years old");
+}
+//개선한 코드
+ageOfFriends.forEach((friend, age) -&gt; System.out.println(friend + " is " + age + " years old"));
+</code></pre></div></div>
+<h3 id="정렬-메서드">정렬 메서드</h3>
+<p><code class="language-plaintext highlighter-rouge">Entry.comparingByValue</code>와 <code class="language-plaintext highlighter-rouge">Entry.comparingByKey</code>를 이용하면 맵의 항목을 값 또는 키를 기준으로 정렬할 수 있다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Map&lt;String, String&gt; favoriteMovies = Map.ofEntries(entry("Raphael", "Star Wars"),
+                                    entry("Christina", "Matrix"),
+                                    entry("Olivia", "James Bond"));
+favoriteMovies.entrySet().stream()
+              .sorted(Entry.comparingByKey())
+              .forEachOrdered(System.out::println); //알파벳 순으로 처리
+</code></pre></div></div>
+<h3 id="getordefault-메서드">getOrDefault 메서드</h3>
+<p>찾으려는 키가 존재하지 않을 때 NullPointerException이 발생하는 것을 방지하기 위해 <code class="language-plaintext highlighter-rouge">getOrDefault</code> 메서드를 사용할 수 있다.
+<code class="language-plaintext highlighter-rouge">getOrDefault</code>는 요청 결과가 널이면 기본값을 반환한다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>favoriteMovies.getOrDefault("Olivia", "Matrix") //Olivia가 없으면 Matrix 출력
+</code></pre></div></div>
+<h3 id="계산-패턴">계산 패턴</h3>
+<p>맵에 키가 존재하는지 여부를 확인해야하는 경우가 있다. 이런 상황에서 다음의 세 가지 연산을 활용할 수 있다.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">computeIfAbsent</code> : 제공된 키에 해당하는 값이 없으면(값이 없거나 널), 키를 이용해 새 값을 계산하고 맵에 추가한다.
+키가 존재하지 않으면 값을 계산해 맵에 추가하고 키가 존재하면 기존 값을 반환한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">computeIfPresent</code> : 제공된 키가 존재하면 새 값을 계산하고 맵에 추가한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">compute</code> : 제공된 키로 새 값을 계산하고 맵에 저장한다.</li>
+</ul>
+
+<h3 id="삭제-패턴">삭제 패턴</h3>
+<p>자바 8에서는 키가 특정한 값과 연관되었을 때만 항목을 제거하는 오버로드 버전 메서드를 제공한다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>favoriteMovies.remove(key, value);
+</code></pre></div></div>
+<h3 id="교체-패턴">교체 패턴</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">replaceAll</code> : BiFunction을 적용한 결과로 각 항목의 값을 교체한다. List의 replaceAll과 유사하다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Replace</code> : 키가 존재하면 맵의 값을 바꾼다.</li>
+</ul>
+
+<h3 id="합침">합침</h3>
+<p><code class="language-plaintext highlighter-rouge">putAll</code>을 사용하면 두 개의 맵을 합칠 수 있다. 하지만, 중복된 키에 유의해야 한다.
+<code class="language-plaintext highlighter-rouge">forEach</code>와 <code class="language-plaintext highlighter-rouge">merge</code> 메서드를 이용하면 충돌을 해결할 수 있다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Map&lt;String, String&gt; everyone = new HashMap&lt;&gt;(family);
+friends.forEach((k,v) -&gt;
+        everyone.merge(k, v, (movie1, movie2) -&gt; movie1 + " &amp; " + movie2));
+</code></pre></div></div>
+<p>지정된 키와 연관된 값이 없거나 널이면 <code class="language-plaintext highlighter-rouge">merge</code>는 키를 널이 아닌 값과 연결한다.
+아니면 <code class="language-plaintext highlighter-rouge">merge</code>는 연결된 값을 주어진 매핑 함수의 결과 값으로 대치하거나 결과가 널이면 항목을 제거한다.<br />
+<code class="language-plaintext highlighter-rouge">merge</code>를 이용해 초기화 검사를 구현할 수도 있다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>moviesToCount.merge(movieName, 1L, (key, count) -&gt; count + 1L);
+</code></pre></div></div>
+<p>이 코드는 키와 연관된 기존 값에 합쳐질 널이 아닌 값 또는 값이 없거나 키에 널 값이 연관되어 있다면 이 값을 키와 연결한다.</p>
+
+<h2 id="개선된-concurrenthashmap">개선된 ConcurrentHashMap</h2>
+<p><code class="language-plaintext highlighter-rouge">ConcurrentHashMap</code>은 동시성 친화적이며 최신 기술을 반영한 HashMap 버전이다. 내부 자료구조의 특정 부분만 잠궈
+동시 추가, 갱신 작업을 허용한다. 따라서, 동기화된 Hashtable 버전에 비해 읽기 쓰기 연산 성능이 월등하다.</p>
+<h3 id="리듀스와-검색">리듀스와 검색</h3>
+<p><code class="language-plaintext highlighter-rouge">ConcurrentHashMap</code>은 스트림에서 봤던 것과 비슷한 세 가지 연산을 지원한다.</p>
+<ul>
+  <li>forEach : 각 (키, 값) 쌍에 주어진 액션을 실행</li>
+  <li>reduce : 모든 (키, 값) 쌍을 제공된 리듀스 함수를 이용해 결과로 합침</li>
+  <li>search : 널이 아닌 값을 반환할 때까지 각 (키, 값) 쌍에 함수를 적용</li>
+</ul>
+
+<p>다음처럼 키에 함수 받기, 값, Map.Entry, (키, 값) 인수를 이용한 네 가지 연산 형태를 지원한다.</p>
+<ul>
+  <li>키, 값으로 연산(forEach, reduce, search)</li>
+  <li>키로 연산(forEachKey, reduceKeys, searchKeys)</li>
+  <li>값으로 연산(forEachValue, reduceValues, searchValues)</li>
+  <li>Map.Entry 객체로 연산(forEachEntry.reduceEntries, searchEntries)</li>
+</ul>
+
+<p>이 연산들은 <code class="language-plaintext highlighter-rouge">ConcurrentHashMap</code>의 상태를 잠그지 않고 연산을 수행하기 때문에, 이 연산들에 제공한 함수는
+계산이 진행되는 동안 바뀔 수 있는 객체, 값, 순서 등에 의존하지 않아야 한다.<br />
+또한, 이들 연산에 <strong>병렬성 기준값</strong> 을 지정해야 한다. 맵의 크기가 주어진 기준값보다 작으면 순차적으로 연산을 실행한다.
+기준값을 1로 지정하면 병렬성을 극대화하고, Long.MAX_VALUE로 지정하면 한 개의 스레드로 연산을 실행한다.</p>
+<h3 id="계수">계수</h3>
+<p><code class="language-plaintext highlighter-rouge">ConcurrentHashMap</code>은 맵의 매핑 개수를 반환하는 <code class="language-plaintext highlighter-rouge">mappingCount</code>를 제공한다.
+기존 size 대신 새 코드에서는 int를 반환하는 <code class="language-plaintext highlighter-rouge">mappingCount</code>를 사용하는 것이 좋다.
+그래야 매핑의 개수가 int의 범위를 넘어서는 상황에 대처할 수 있기 때문이다.</p>
+<h3 id="집합뷰">집합뷰</h3>
+<p><code class="language-plaintext highlighter-rouge">ConcurrentHashMap</code>은 ConcurrentHashMap을 집합뷰로 반환하는 <code class="language-plaintext highlighter-rouge">KeySet</code>이라는 새 메서드를 제공한다.
+맵을 바꾸면 집합도 바뀌고 반대로 집합을 바꾸면 맵도 영향을 받는다.</p>
+:ET

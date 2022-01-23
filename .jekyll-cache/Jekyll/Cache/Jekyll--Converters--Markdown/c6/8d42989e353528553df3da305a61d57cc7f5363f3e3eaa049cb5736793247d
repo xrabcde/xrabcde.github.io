@@ -1,0 +1,36 @@
+I"�<h2 id="4차-데모데이">4차 데모데이</h2>
+<h3 id="db-flyway">DB flyway</h3>
+<ul>
+  <li>DB 형상관리를 위해 flyway 도입</li>
+  <li>DB 콘솔에 직접 쿼리문을 날리지 않고 수정할 변경정보를 기록하고 관리할 수 있음</li>
+  <li>DB 변경내역을 별도의 테이블에 기록하여 버전 관리</li>
+  <li><a href="https://github.com/woowacourse-teams/2021-zzimkkong/wiki/%5BBE%5D-DB-flyway">위키정리</a></li>
+</ul>
+
+<h3 id="jacoco와-sonarqube">Jacoco와 Sonarqube</h3>
+<ul>
+  <li>Jacoco
+    <ul>
+      <li>자바 코드 커버리지를 체크할 때 사용하는 오픈소스 라이브러리</li>
+      <li>Line, Branch Coverage를 제공</li>
+      <li>코드 커버리지 결과를 파일 형태로 저장할 수 있음 (html, xml, csv 등)</li>
+      <li>설정한 커버리지 기준을 만족하지 못하면 빌드하지 못하도록 설정 가능</li>
+    </ul>
+  </li>
+  <li>Sonarqube
+    <ul>
+      <li>프로젝트의 품질을 관리할 수 있는 정적 분석 도구</li>
+      <li>코드 추가/변경 시 새로 발견된 문제들을 제어하여 지속적으로 코드 품질을 관리할 수 있음</li>
+      <li>코딩 규칙을 위반한 경우</li>
+      <li>하나의 작업에 하나의 언어만 분석 가능</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="lombok">Lombok</h3>
+<ul>
+  <li>반복적으로 작성하는 코드를 어노테이션 기반으로 생성해주는 라이브러리</li>
+  <li>NoArgsConstructor와 Builder의 중복 코드를 제거하기 위해 도입</li>
+  <li><a href="https://velog.io/@shining_dr/Builder-%ED%8C%A8%ED%84%B4%EA%B3%BC-NullPointException">참고링크</a></li>
+</ul>
+:ET

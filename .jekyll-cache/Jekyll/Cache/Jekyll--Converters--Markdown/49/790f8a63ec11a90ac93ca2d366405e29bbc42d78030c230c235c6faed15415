@@ -1,0 +1,41 @@
+I"W<p>Spring MVC는 프론트 컨트롤러 패턴으로 구현되어 있다. 스프링 MVC의 핵심인 Dispatcher Servlet이
+스프링 MVC의 프론트 컨트롤러 역할을 한다.
+<strong>Dispatcher Servlet에 요청이 들어와서 응답으로 반환될 때까지의 흐름</strong>을 알아보자.</p>
+
+<h2 id="dispatcher-servlet-flow">Dispatcher Servlet Flow</h2>
+<div style="width:100% !important; margin:0 auto">
+<img src="/assets/img/springmvc1.jpg" alt="springmvc1.jpg" />
+</div>
+
+<ol>
+  <li><strong>getHandler()</strong><br />
+  Dispatcher Servlet에 요청이 들어오면 먼저 getHandler() 메서드를 통해 <code class="language-plaintext highlighter-rouge">HandlerMapping</code> 객체가
+핸들러를 조회 후 찾은 Handler에 대한 <code class="language-plaintext highlighter-rouge">HandlerExecutionChain</code>을 반환한다.</li>
+  <li><strong>getHandlerAdapter()</strong><br />
+  1.에서 찾은 <code class="language-plaintext highlighter-rouge">HandlerExecutionChain</code>을 이용해 <code class="language-plaintext highlighter-rouge">HandlerAdapter</code>를 찾아 반환한다.</li>
+  <li><strong>applyPreHandle()</strong><br />
+  요청에 대해 컨트롤러를 실행하기 전 처리하고 싶은 로직을 <code class="language-plaintext highlighter-rouge">HandlerInterceptor</code>에서 <code class="language-plaintext highlighter-rouge">preHandle()</code>을
+이용해 처리해준다. (ex. 인증과 인가) 이 때, <code class="language-plaintext highlighter-rouge">preHandle()</code>은 반환값으로 boolean을 사용하는데 만약 반환값이 <code class="language-plaintext highlighter-rouge">false</code>라면 
+컨트롤러 로직을 실행하지 않고 <code class="language-plaintext highlighter-rouge">afterCompletion</code>을 실행한다.</li>
+  <li><strong>handle()</strong><br />
+  조회를 통해 찾아낸 <code class="language-plaintext highlighter-rouge">HandlerAdapter</code>에서 해당 핸들러에 대해 <code class="language-plaintext highlighter-rouge">ArgumentResolver</code>를 처리하고 Handler를 실행한다.
+이 때, Handler를 실행한다는 의미는 Service &gt; Repository &gt; DB 로 이어지는 비즈니스 로직을 실행한다는 뜻이다.
+<code class="language-plaintext highlighter-rouge">HandlerAdapter</code>는 handle()의 반환값으로 <code class="language-plaintext highlighter-rouge">ModelAndView</code>를 반환한다.</li>
+  <li><strong>applyPostHandle()</strong><br />
+  <code class="language-plaintext highlighter-rouge">HandlerInterceptor</code>에서 컨트롤러 실행 후 하고 싶은 로직을 <code class="language-plaintext highlighter-rouge">postHandle()</code>로 처리한다. 
+<code class="language-plaintext highlighter-rouge">preHandle()</code>과 달리 <code class="language-plaintext highlighter-rouge">postHandle()</code>은 반환값이 없고, 역순으로 처리된다.</li>
+  <li><strong>render()</strong><br />
+  <code class="language-plaintext highlighter-rouge">ViewResolver</code>가 <code class="language-plaintext highlighter-rouge">resolveViewName()</code>을 통해 View의 이름으로 View 객체를 조회 후 반환한다.</li>
+  <li><strong>view.render()</strong><br />
+  찾은 View에 Model 데이터를 렌더링 후 요청의 응답값을 <code class="language-plaintext highlighter-rouge">DispatcherServlet</code>이 클라이언트에게 반환한다.</li>
+</ol>
+
+<h2 id="결론">결론</h2>
+<p>복잡한 Spring MVC의 동작 원리를 다 이해하는 것은 쉽지 않지만, 이렇게 핵심 동작방식을 알아두면
+향후 개발과정에서 문제가 발생했을 때 <strong>어떤 부분에서 문제가 발생했는지 쉽게 파악</strong>하고, 문제를 해결할 수 있을 것이다.</p>
+
+<h2 id="출처">출처</h2>
+<ul>
+  <li><a href="https://github.com/binghe819/TIL/blob/master/Spring/MVC/Spring%20MVC%20flow.md">참고링크1</a></li>
+</ul>
+:ET

@@ -1,0 +1,86 @@
+I"�<h3 id="entity-설계">Entity 설계</h3>
+<ul>
+  <li>각 Entity 간의 연관관계를 고려해 Entity를 설계함</li>
+  <li>Member &gt; Map &gt; Space &gt; Reservation 순으로 1대다 관계를 가짐</li>
+  <li><a href="https://github.com/woowacourse-teams/2021-zzimkkong/pull/19">PR</a></li>
+</ul>
+
+<h3 id="tdd-인수테스트-서비스테스트-테스트-픽스처">TDD (인수테스트, 서비스테스트, 테스트 픽스처)</h3>
+<ul>
+  <li>RestAssured를 사용해서 API들에 대한 controller 테스트 작성</li>
+  <li>BDDMockito를 사용해서 기능 메서드들에 대한 service 테스트 작성</li>
+  <li>여러 테스트클래스에서 중복코드를 제거하고 가독성 향상을 위해 중복으로 생성하는 객체들을 테스트 픽스처로 정리</li>
+  <li><a href="https://dongdd.tistory.com/165">참고링크1</a></li>
+  <li><a href="https://velog.io/@lxxjn0/Mockito%EC%99%80-BDDMockito%EB%8A%94-%EB%AD%90%EA%B0%80-%EB%8B%A4%EB%A5%BC%EA%B9%8C">참고링크2</a></li>
+</ul>
+
+<h3 id="배포-자동화">배포 자동화</h3>
+<ul>
+  <li>Jenkins를 이용해 CI/CD 환경을 구축함</li>
+  <li>먼저 PR 에 대한 build success 여부를 확인하고 fail 시 머지가 불가능하도록 설정</li>
+  <li>머지 된 후에 Jenkins가 한 번 더 빌드를 하고 성공하면 사전에 작성해놓은 쉘 스크립트에 따른 배포를 진행</li>
+  <li>빌드/배포 후 조치로 빌드 시작 시, 성공 시, 실패 시 slack 알림이 오도록 설정</li>
+  <li><a href="https://github.com/woowacourse-teams/2021-zzimkkong/wiki/%5BBE%5D-Jenkins">위키정리</a></li>
+  <li><a href="https://xrabcde.notion.site/Jenkins-backend-dd8359a74bbd461ba4783bf75f6cfbbf">노션정리</a></li>
+</ul>
+
+<h3 id="rest-docs-api-문서화">Rest Docs (API 문서화)</h3>
+<ul>
+  <li>자동화된 API 문서를 만들기 위해 Rest Docs를 적용함</li>
+  <li>프로덕션 코드에 영향도 없고 변경되는 API에 대해 동기화가 보장되므로 Rest Docs를 선택함</li>
+  <li>테스트가 성공해야 문서가 작성되므로 꼼꼼한 테스트작성을 할 수 있음</li>
+  <li><a href="https://techblog.woowahan.com/2597/">참고링크</a></li>
+  <li><a href="https://github.com/woowacourse-teams/2021-zzimkkong/pull/45">PR</a></li>
+</ul>
+
+<h3 id="로깅">로깅</h3>
+<ul>
+  <li>Logback을 이용해 logging 설정</li>
+  <li>로그레벨을 INFO, WARN, ERROR로 나눔
+    <ul>
+      <li>INFO : 비즈니스 로직과 관련한 exception, 4xx대, 별도로 수집하지 않음</li>
+      <li>WARN : 401, 500 에러를 포함한 시스템 WARN</li>
+      <li>ERROR : 예상치 못한 에러, bug</li>
+    </ul>
+  </li>
+  <li>로그 파일을 날짜별, 레벨별 순서로 디렉터리를 만들어 분류</li>
+  <li><a href="https://meetup.toast.com/posts/149">참고링크</a></li>
+  <li><a href="https://github.com/woowacourse-teams/2021-zzimkkong/pull/151">PR</a></li>
+</ul>
+
+<h3 id="builder-패턴">Builder 패턴</h3>
+<ul>
+  <li>생성자 인자가 많아져서 객체 생성을 깔끔하고 유연하게 하기 위해 Builder 패턴을 도입함</li>
+  <li>각 인자가 어떤 의미인지 알기 쉽고 인자의 순서나 자료형 때문에 헷갈릴 일이 없음</li>
+  <li>기능이 추가되면서 Builder 패턴을 사용하는 객체가 많아져 후에는 Lombok을 도입함</li>
+  <li><a href="https://johngrib.github.io/wiki/builder-pattern/">참고링크</a></li>
+</ul>
+
+<h3 id="슬랙-알림-api">슬랙 알림 API</h3>
+
+<div style="width:80% !important; margin:0 auto">
+<img src="/assets/img/studylog_lv3-2-1.png" alt="studylog_lv3-2.png" />
+</div>
+
+<ul>
+  <li>관리자가 예약을 수정하거나 삭제할 때마다 채널에 알림을 보내주는 기능을 구현함</li>
+  <li>restTemplate을 이용해서 메시지 내용을 담은 DTO를 JSON 형식으로 보냄</li>
+  <li><a href="https://leeborn.tistory.com/entry/Spring-Boot-%EC%8A%AC%EB%9E%99-webhook-%EB%A9%94%EC%8B%9C%EC%A7%80-%EB%B3%B4%EB%82%B4%EA%B8%B0">참고링크1</a></li>
+  <li><a href="https://sjh836.tistory.com/141">참고링크2</a></li>
+  <li><a href="https://github.com/woowacourse-teams/2021-zzimkkong/pull/115">PR</a></li>
+</ul>
+
+<h3 id="usingrecursivecomparison">usingRecursiveComparison()</h3>
+<ul>
+  <li>DTO의 값 동등성 비교 시 사용</li>
+  <li>필드 내부에 중첩된 객체가 있다면 해당 객체의 필드값을 비교해서 확인</li>
+  <li>ignoringFields() : 특정 필드 무시</li>
+  <li>ignoringActualNullFields(), ignoringExpectedNullFields() : null인 필드 무시</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>assertThat(actual).usingRecursiveComparison()
+	.ignoringCollectionOrder()
+	.ignoringExpectedNullFields()
+	.isEqualTo(expected);
+</code></pre></div></div>
+:ET

@@ -1,0 +1,78 @@
+I"�<h2 id="1-상황">1. 상황</h2>
+<p><a href="https://taylantatli.github.io/Moon/">Jekyll 테마</a> 를 fork 해서 GitHub 블로그를 사용하고 있는데
+이 테마에선 기본 댓글 플랫폼으로 <code class="language-plaintext highlighter-rouge">Disqus</code>를 적용하고 있다. 하지만, <code class="language-plaintext highlighter-rouge">Disqus</code>를 이용해 댓글을 작성하려면
+Disqus를 가입해야 하고 무거운 데다가 광고도 많이 붙는다. 
+그래서 fork 받은 테마에 댓글 부분이 다 구현되어 있었지만 포스팅을 할 때 항상 <code class="language-plaintext highlighter-rouge">comments: false</code>로 하여
+댓글 관련 기능은 아예 이용하지 않고 있었다.<br />
+그러던 중, 다른 사람의 GitHub 블로그를 보다가 GitHub 계정으로 댓글을 달 수 있다는 사실을 알았다. 
+검색해보니 <code class="language-plaintext highlighter-rouge">Utterances</code>라는 댓글 플랫폼을 이용하는 것이었다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Utterances</code>는 우선 광고가 없고 가볍다고 하며, 최대 장점은 <strong>따로 가입할 필요없이 GitHub 계정으로 댓글을 달 수 있다는 것</strong>이다.
+내 블로그를 보는 사람은 대부분 개발을 공부하는 사람들이기 때문에 GitHub 계정으로 댓글을 달 수 있다는 점이 굉장히 큰 장점으로 느껴졌다.
+뿐만 아니라, GitHub 레포에 Issue를 통해 댓글이 달리는 방식이기 때문에 메일로 댓글 알림도 받을 수 있고,
+마크다운 문법을 사용할 수 있다.</p>
+
+<h2 id="2-과정">2. 과정</h2>
+<p>먼저, 댓글 Issue가 올라올 public 저장소를 정하거나 새로 생성한다.
+나의 경우는 <a href="https://github.com/xrabcde/xrabcde.github.io-comments">댓글 이슈가 올라올 전용 Repository</a> 를 새로 만들었다.</p>
+
+<p>그 다음, GitHub App에서 Utterance를 설치한다. <a href="https://github.com/apps/utterances">Utterance 링크</a> 에 들어가 설치하면 된다.</p>
+<div style="width:100% !important; margin:0 auto">
+<img src="/assets/img/comments1.png" alt="comments1.png" />
+</div>
+
+<p>나의 경우, 이미 설치했기 때문에 Configure라고 나오는데 Install을 눌러 설치해주면 된다.</p>
+
+<p>Install을 누르면 저장소를 선택하는 화면이 나온다.</p>
+<div style="width:100% !important; margin:0 auto">
+<img src="/assets/img/comments2.png" alt="comments2.png" />
+</div>
+
+<p>앞에서 만든 Repository를 선택하고 Install을 눌러 설치를 완료한다. 설치가 완료되면 저장소를 설정할 수 있는 설정 페이지로 이동한다.</p>
+<div style="width:80% !important; margin:0 auto">
+<img src="/assets/img/comments3.png" alt="comments3.png" />
+</div>
+
+<div style="width:80% !important; margin:0 auto">
+<img src="/assets/img/comments4.png" alt="comments4.png" />
+</div>
+
+<p>repo에 <code class="language-plaintext highlighter-rouge">계정명/저장소이름</code> 을 입력하고 블로그 포스트와 이슈 매핑 방법에 대한 설정을 해주었다.
+이슈가 생성될 때 블로그 글 경로가 이슈의 제목으로 생성되는 설정이다.</p>
+
+<p>이슈 라벨은 굳이 설정할 필요는 없지만 구분을 위해 <code class="language-plaintext highlighter-rouge">comments</code> 를 붙이도록 설정했다.</p>
+<div style="width:80% !important; margin:0 auto">
+<img src="/assets/img/comments5.png" alt="comments5.png" />
+</div>
+
+<p>설정을 마치면 html 스크립트가 나온다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;script src="https://utteranc.es/client.js"
+        repo="xrabcde/xrabcde.github.io-comments"
+        issue-term="pathname"
+        label="comments"
+        theme="github-light"
+        crossorigin="anonymous"
+        async&gt;
+&lt;/script&gt;
+</code></pre></div></div>
+<p>이 스크립트를 <code class="language-plaintext highlighter-rouge">post.html</code> 과 같은 스크립트에 추가해주면 된다.
+내가 사용하고 있는 Jekyll 테마는 기본적으로 Disqus를 사용하고 있었으므로 <a href="https://github.com/xrabcde/xrabcde.github.io/commit/b4aef9df34ce44ca330f86d5f158423c281deef9">disqus 관련 코드들은 모두 지우고 이 코드를 추가해줬다.</a></p>
+<div style="width:100% !important; margin:0 auto">
+<img src="/assets/img/comments7.png" alt="comments7.png" />
+</div>
+
+<p>이제 GitHub 저장소에 push 하면 댓글이 하단에 추가된 것을 확인할 수 있다.
+<code class="language-plaintext highlighter-rouge">page.comments</code>에 따른 설정도 코드에 있기 때문에 이전과 같이 <code class="language-plaintext highlighter-rouge">comments: false</code>로 포스팅하면 댓글기능을 사용하지 않을 수도 있다.</p>
+
+<h2 id="3-결론">3. 결론</h2>
+<div style="width:100% !important; margin:0 auto">
+<img src="/assets/img/comments6.png" alt="comments6.png" />
+</div>
+
+<p>이제 블로그 하단에 GitHub 계정으로 댓글을 달 수 있는 부분이 추가되었고 
+작성한 댓글은 댓글 Repository에 Issue로 잘 생성되고 있다!</p>
+
+<div style="width:100% !important; margin:0 auto">
+<img src="/assets/img/comments8.png" alt="comments8.png" />
+</div>
+:ET

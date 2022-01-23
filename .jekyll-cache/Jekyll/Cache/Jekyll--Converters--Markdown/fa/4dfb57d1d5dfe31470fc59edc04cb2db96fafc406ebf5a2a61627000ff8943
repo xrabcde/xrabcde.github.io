@@ -1,0 +1,126 @@
+I"�<h2 id="race-condition">Race condition</h2>
+<ul>
+  <li>여러 프로세스들이 <strong>동시에 공유 데이터에 접근</strong>하는 상황
+    <ul>
+      <li>데이터의 최종 연산 결과는 마지막에 그 데이터를 다룬 프로세스에 따라 달라짐</li>
+      <li>race condition을 막기 위해서는 concurrent process는 동기화되어야 함</li>
+    </ul>
+  </li>
+  <li>Race Condition이 발생할 수 있는 상황
+    <ol>
+      <li><strong>kernel 수행 중 인터럽트 발생</strong> : 중요한 루틴을 처리하고 있을 때는 인터럽트가 들어와도 인터럽트 처리를 미룬 뒤 작업을 마친 후에 인터럽트 처리</li>
+      <li>프로세스가 system call을 해 <strong>kernel 모드로 수행 중인데, Context switch 발생</strong> : 프로세스가 커널 모드로 수행 중일 때는 CPU를 preempt하지 않게 하고 커널모드에서 사용자모드로 복귀할 때 다시 preempt함</li>
+      <li>Multiprocessor에서 <strong>Shared memory내의 kernel data에 접근</strong>할 경우 : 하나의 프로세서가 공유 메모리에 접근할 때 데이터에 대해 lock을 걸어주고 메모리에서의 작업이 끝나면 unlock을 해줌</li>
+    </ol>
+  </li>
+  <li>하지만, 무조건 접근을 제한하면 비효율적이므로 Critical Section에 어떠한 방법을 적용해야 함
+    <ol>
+      <li><strong>Mutual Exclusion (상호배제)</strong> : critical section에 동시에 도달하면 안됨</li>
+      <li><strong>Progress</strong> : 아무도 공유 데이터에 접근하고 있지 않을 때 접근하고자 하는 프로세스가 있다면 접근을 허용해야 함</li>
+      <li><strong>Bounded waiting</strong> : 프로세스가 접근하기 위해 요청한 후부터 요청이 허용될 때까지의 waiting time이 유한해야 함</li>
+    </ol>
+
+    <p>⇒ 위 세 가지 조건을 모두 충족시키며 lock과 unlock을 분배할 알고리즘 필요</p>
+  </li>
+</ul>
+
+<h2 id="semaphore">Semaphore</h2>
+<ul>
+  <li>멀티프로그래밍 환경에서 공유 자원에 접근을 제한하기 위해 고안된 두 개의 원자적 함수로 조작되는 정수 변수</li>
+  <li>세마포어 변수는 정수값을 가지고, 이는 자원의 개수를 의미</li>
+  <li>✅ 락을 걸고 푸는 작업, 공유 자원 획득/반납을 간결하게 해줌
+    <ul>
+      <li>P(S) : 공유 데이터를 획득하는 함수, 변수가 하나인 경우 락을 거는 것</li>
+    </ul>
+
+    <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">while</span> <span class="p">(</span><span class="nx">S</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">do</span> <span class="nx">no</span><span class="o">-</span><span class="nx">op</span><span class="p">;</span> <span class="c1">//wait</span>
+  <span class="nx">S</span><span class="o">--</span><span class="p">;</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>V(S) : 공유 데이터를 반납하는 함수, 변수가 하나인 경우 락을 푸는 것</li>
+    </ul>
+
+    <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">S</span><span class="o">++</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>❌ 구현과 정확성 입증이 어렵고, 한 번의 실수로 모든 시스템에 치명적 영향을 줄 수 있음</li>
+</ul>
+
+<ol>
+  <li>Counting semaphore : resource counting에 사용</li>
+  <li>Binary semaphore : 0 또는 1만 가질 수 있고 주로 mutual exclusion(lock/unlock)에 사용</li>
+</ol>
+
+<h2 id="deadlock">Deadlock</h2>
+<ul>
+  <li>일련의 프로세스들이 서로가 가진 자원을 기다리며 block된 상태</li>
+  <li>Deadlock 발생조건
+    <ol>
+      <li>Mutual exclusion (상호 배제) : 자원을 일단 얻었으면 독점적으로 사용, 즉 다른 프로세스가 동일한 자원을 동시에 사용할 수 없음</li>
+      <li>No preemption (비선점) : 자원을 가지고 있으면 강제로 빼앗길 수 없음</li>
+      <li>Hold and wait (보유 대기) : 이미 어떤 자원을 가지고 있으면서 다른 추가적인 자원을 기다릴 때 발생, 이 때 가지고 있는 자원은 반납하지 않음</li>
+      <li>Circular wait (순환 대기) : 자원을 기다리는 프로세스 간 사이클이 형성되는 경우</li>
+    </ol>
+  </li>
+  <li>Deadlock 해결방법</li>
+</ul>
+
+<ol>
+  <li>Deadlock Prevention
+    <ul>
+      <li>데드락이 생기지 않게 미리 방지하는 방법, 가장 강력한 방법</li>
+      <li>데드락이 발생하는 4가지 조건 중 하나를 차단하는</li>
+    </ul>
+
+    <ol>
+      <li>Hold &amp; Wait
+        <ul>
+          <li>어떤 프로세스가 시작될 때 이 프로세스가 필요한 모든 자원을 할당 받게 하는 방법 (중간에 추가로 필요한 자원이 없도록 함 ⇒ 비효율적)</li>
+          <li>자원이 필요한 시점에 할당받게 하지만, 프로세스가 어떤 자원을 가지고 있는 상태에서 다른 자원을 기다려야 한다면, 이미 가지고 있는 자원도 모두 반납한 후에 기다리게 하는 방법</li>
+        </ul>
+      </li>
+      <li>No preemption
+        <ul>
+          <li>자원을 강제로 빼앗길 수 있게 함, 자원의 현재 상태를 쉽게 save &amp; restore 할 수 있는 상태일 때 사용하는 방법</li>
+        </ul>
+      </li>
+      <li>Circular Wait
+        <ul>
+          <li>자원마다 번호를 매겨 낮은 번호의 자원부터 획득해야 높은 번호의 자원을 획득할 수 있도록 함 (싸이클 방지) ⇒ 자원에 대한 이용률⬇ 시스템 성능⬇ starvation 등의 문제 발생가</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>Deadlock Avoidance
+    <ul>
+      <li>데드락이 생기지 않게 미리 방지하는 방법</li>
+      <li>자원 요청에 대한 부가 정보를 활용해서 deadlock 가능성이 없는 경우만 자원을 할당해주는 방법</li>
+      <li>자원의 instance가 하나씩인 경우 : Resource Allocation Graph Algorithm 사용</li>
+      <li>자원의 instance가 여러 개인 경우 : Banker’s Algorithm 사용</li>
+    </ul>
+  </li>
+  <li>Deadlock Detection and recovery
+    <ul>
+      <li>시스템에 문제가 있을 때 데드락이 있는지 확인하고 고쳐주는 방법</li>
+      <li>자원의 instance가 하나씩인 경우 : Resource Allocation Graph Algorithm 사용</li>
+      <li>자원의 instance가 여러 개인 경우 : 표를 그려 확인</li>
+    </ul>
+  </li>
+  <li>Deadlock Ignorance
+    <ul>
+      <li>데드락에 대해 아무 일도 하지 않는 방법 (현대 운영체제가 대부분 이 방법 사용)</li>
+      <li>사용자가 알아서 처리하도록 함</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+<h3 id="참고링크">참고링크</h3>
+<ul>
+  <li><a href="https://mangkyu.tistory.com/104">참고링크1</a></li>
+  <li><a href="https://worthpreading.tistory.com/90">참고링크2</a></li>
+  <li><a href="https://snupi.tistory.com/135?category=933547">참고링크3</a></li>
+  <li><a href="https://velog.io/@zzarbttoo/OSOSProcess-SynchronizationProblem-DeadLock-and-Starvation-Semaphore">참고링크4</a></li>
+</ul>
+:ET

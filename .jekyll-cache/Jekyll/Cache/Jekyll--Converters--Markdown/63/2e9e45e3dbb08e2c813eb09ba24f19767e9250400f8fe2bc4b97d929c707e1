@@ -1,0 +1,110 @@
+I"j<h1 id="개요">개요</h1>
+<ul>
+  <li><a href="https://xrabcde.github.io/db-backup/">DB 백업</a> 글에서 이어지는 글입니다.</li>
+  <li>이 글은 백업 방법이 아닌 mysqldump를 이용한 백업을 <strong>crontab을 통해 자동화시키는 과정</strong>에 대해 다룹니다.</li>
+</ul>
+
+<h1 id="과정">과정</h1>
+<h2 id="1-db-자동-백업-쉘-스크립트-작성">1. DB 자동 백업 쉘 스크립트 작성</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vi backup.sh
+
+<span class="c">#!/bin/bash</span>
+<span class="nv">DATE</span><span class="o">=</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span>
+<span class="nv">BACKUP_DIR</span><span class="o">=</span>/home/ubuntu/backup_auto/
+mysqldump <span class="nt">-uroot</span> <span class="nt">-p1234</span> zzimkkong <span class="o">&gt;</span> <span class="nv">$BACKUP_DIR</span><span class="s2">"backup_"</span><span class="nv">$DATE</span>.sql
+
+find <span class="nv">$BACKUP_DIR</span> <span class="nt">-ctime</span> +3 <span class="nt">-exec</span> <span class="nb">rm</span> <span class="nt">-f</span> <span class="o">{}</span> <span class="se">\;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>DATE 변수에 현재 날짜 저장 (date 뒤에 띄어쓰기가 있는 것에 주의)</li>
+  <li>BACKUP_DIR 변수에는 백업 파일들이 저장될 디렉토리 경로 저장</li>
+  <li>mysqldump 명령을 이용하여 백업 파일 생성</li>
+  <li>find 명령을 이용하여 3일이 지난 백업파일은 삭제
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">-ctime n</code> 옵션은 파일의 퍼미션을 마지막으로 변경시킨 날짜를 기준으로 파일을 찾아낸다.</li>
+    </ul>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  +n : n일 또는 n일 이전에 퍼미션이 변경된 파일
+  <span class="nt">-n</span> : 오늘 부터 n일 전 사이에 퍼미션이 변경된 파일
+  n : 정확히 n일 전에 퍼미션이 변경된 파일
+</code></pre></div>    </div>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">-exec command {} \;</code> 옵션은 찾아낸 파일들을 대상으로 특정 명령을 수행한다.</li>
+    </ul>
+  </li>
+  <li>쉘 스크립트 파일에 실행 권한 주기</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">chmod </span>754 backup.sh
+</code></pre></div></div>
+
+<h2 id="2-crontab-을-이용하여-스크립트-자동-실행">2. crontab 을 이용하여 스크립트 자동 실행</h2>
+<ul>
+  <li>예약된 작업 리스트 확인</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>crontab <span class="nt">-l</span>
+</code></pre></div></div>
+
+<ul>
+  <li>예약된 작업 수정</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>crontab <span class="nt">-e</span>
+
+0 20 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> /home/ubuntu/backup_auto/script/backup.sh <span class="o">&gt;&gt;</span> /home/ubuntu/backup_auto/crontab_log/backup.log 2&gt;&amp;1
+</code></pre></div></div>
+
+<ul>
+  <li>위 크론탭 명령에서 로그 파일이 잘 생성되도록, /home/ubuntu/backup_auto/crontab_log라는 디렉토리 만들어놓기
+(<strong>디렉토리를 미리 만들어놓지 않으면 에러 발생함!!</strong>)</li>
+  <li>작업 명령 이용 방법</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> 수행할 명령어
+┬ ┬ ┬ ┬ ┬
+│ │ │ │ └───────── 요일 <span class="o">(</span>0 - 6<span class="o">)</span> <span class="o">(</span>0:일요일, 1:월요일, 2:화요일, …, 6:토요일<span class="o">)</span>
+│ │ │ └───────── 월 <span class="o">(</span>1 - 12<span class="o">)</span>
+│ │ └───────── 일 <span class="o">(</span>1 - 31<span class="o">)</span>
+│ └───────── 시 <span class="o">(</span>0 - 23<span class="o">)</span>
+└───────── 분 <span class="o">(</span>0 - 59<span class="o">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>현재 저희 DB에는 매일 20시(UTC 기준) 정각마다 명령을 수행하도록 설정해놓은 상태입니다.</li>
+  <li>
+    <p><strong>20시(UTC 기준, KST 기준으로 새벽 5시)로 해놓은 이유?</strong></p>
+
+    <p>DB 부하가 가장 적은 시간으로 백업시간을 정해놓는 것이 좋을 것 같다고 생각했고 저희 서비스는 새벽 시간대에 트래픽이 가장 적기 때문에 새벽 5시로 설정했습니다. 추가적으로 UTC 기준으로 작성한 이유는 EC2 서버 시간이 UTC 기준이기 때문이고 crontab을 위해서 EC2 서버 시간을 바꾸기는 리스크가 있을 것 같아서 그냥 명령수행 시간을 UTC 기준으로 작성해 놓았습니다.</p>
+  </li>
+  <li>cron 재시작</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>service cron restart
+</code></pre></div></div>
+
+<div style="width:80% !important; margin:0 auto">
+<img src="/assets/img/backup_auto1.png" alt="backup_auto1.png" />
+</div>
+
+<h2 id="3-백업-파일-확인">3. 백업 파일 확인</h2>
+<ul>
+  <li>이렇게 쉘 스크립트 작성 후 crontab으로 해당 스크립트를 자동 실행되도록 설정하면 아래와 같이 backup sql 파일들이 자동 생성되는 것을 확인할 수 있습니다.</li>
+  <li>참고로 3일이 경과한 sql 파일들은 삭제하도록 작성했습니다.</li>
+</ul>
+
+<div style="width:80% !important; margin:0 auto">
+<img src="/assets/img/backup_auto2.png" alt="backup_auto2.png" />
+</div>
+
+<p>끝!</p>
+
+<h2 id="참고">참고</h2>
+<ul>
+  <li><a href="https://cjh5414.github.io/mysql-backup-automatically/">MySQL 자동 백업</a></li>
+  <li><a href="https://cjh5414.github.io/linux-crontab/">Linux crontab 이용하여 작업 명령 예약하기</a></li>
+</ul>
+:ET

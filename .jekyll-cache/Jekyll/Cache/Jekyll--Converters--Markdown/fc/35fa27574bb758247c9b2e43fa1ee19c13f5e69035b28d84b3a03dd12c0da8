@@ -1,0 +1,74 @@
+I"d<h1 id="개요">개요</h1>
+<ul>
+  <li>DB 서버를 분리하는 과정에서 한 인스턴스에서 다른 인스턴스로 데이터 백업을 진행한 과정을 정리합니다.</li>
+  <li>이 글에서는 백업 자동화가 아닌 <strong>일회성 백업</strong>에 대해 다룹니다.</li>
+</ul>
+
+<h1 id="과정">과정</h1>
+<h2 id="백업-데이터들이-있는-기존-인스턴스에서-해야할-일">백업 데이터들이 있는 기존 인스턴스에서 해야할 일</h2>
+<div style="width:80% !important; margin:0 auto">
+<img src="/assets/img/backup1.png" alt="backup1.png" />
+</div>
+
+<ul>
+  <li>백업 하려는 파일을 저장할 폴더를 생성합니다.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir backup
+</code></pre></div></div>
+
+<ul>
+  <li>생성한 폴더에 들어가서 DB 백업 명령어를 사용해 백업파일을 만듭니다.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd backup
+
+// mysqldump -u 사용자계정 -p 기존데이터베이스명 &gt; 백업파일이름.sql
+mysqldump -u root -p zzimkkong &gt; backup.sql
+</code></pre></div></div>
+
+<h2 id="로컬-터미널에서-해야할-일">로컬 터미널에서 해야할 일</h2>
+<div style="width:100% !important; margin:0 auto">
+<img src="/assets/img/backup2.png" alt="backup2.png" />
+</div>
+
+<ul>
+  <li>scp를 사용해 만든 백업파일을 새 인스턴스로 옮깁니다.
+    <ul>
+      <li>현재 보안그룹 관련 설정때문에 원격 &gt; 원격 전송이 불가능해서 원격 &gt; 로컬 &gt; 원격으로 전송했습니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 원격 &gt; 로컬 
+scp -i KEY위치 ubuntu@[기존 인스턴스 IP주소]:[전송할 파일 경로] [받을 경로]
+scp -i ~/Downloads/KEY-zzimkkong.pem ubuntu@52.78.60.9:/home/ubuntu/backup/backup.sql ~/Downloads
+
+// 로컬 &gt; 원격
+scp -i KEY위치 [전송할 파일 경로] ubuntu@[새 인스턴스 IP주소]:[받을 경로]
+scp -i ~/Downloads/KEY-zzimkkong.pem ~/Downloads/backup.sql ubuntu@ 13.124.27.102:/home/ubuntu/backup
+</code></pre></div></div>
+
+<h2 id="데이터를-가져오려는-새-인스턴스에서-해야할-일">데이터를 가져오려는 새 인스턴스에서 해야할 일</h2>
+<div style="width:80% !important; margin:0 auto">
+<img src="/assets/img/backup3.png" alt="backup3.png" />
+</div>
+
+<ul>
+  <li>새 인스턴스에서 DB 복원 명령어를 사용해 백업파일을 데이터로 복원합니다.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd backup
+
+// mysql -u 사용자계정 -p 새데이터베이스명 &gt; 백업파일이름.sql
+mysql -u root -p zzimkkong &lt; backup.sql
+</code></pre></div></div>
+
+<p>끝!</p>
+
+<h2 id="참고">참고</h2>
+<ul>
+  <li><a href="https://server-talk.tistory.com/30">MYSQL 백업, 복원</a></li>
+  <li><a href="https://doheejin.github.io/linux/2021/03/03/linux-scp.html">scp로 파일 전송하기</a></li>
+</ul>
+:ET
