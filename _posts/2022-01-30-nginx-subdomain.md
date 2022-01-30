@@ -151,5 +151,7 @@ $ sudo service nginx status # nginx 상태확인
 ```
 
 # 결론
+이게 가능한 이유는 바로 `server_name` 때문이다. [nginx 공식문서](http://nginx.org/en/docs/http/server_names.html)를 보면 유저가 ip 주소가 아닌 domain 주소를 이용해서 요청을 보내는 경우에 해당 domain 주소의 모양을 server_name으로 구분해서 식별할 수 있다! 
+
 ~~막상 이렇게 인스턴스 2개로도 잘 돌아가는 걸 알고 나니까 그동안 얼마나 낭비를 했었는ㅈ...~~  
 포비 감사합니다! :)
