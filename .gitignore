@@ -3,4 +3,4 @@ _site/
 .sass-cache/
 .jekyll-metadata
 _config.yml
-.jekyll-cache
+.jekyll-cache/
