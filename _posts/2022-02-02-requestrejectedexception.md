@@ -67,5 +67,5 @@ public class ControllerAdvice implements RequestRejectedHandler {
 </div>
 
 ## References
-- [Spring Seuciry Repo](https://github.com/spring-projects/spring-security/pull/7052)
+- [Spring Security Repo](https://github.com/spring-projects/spring-security/pull/7052)
 - [Spring 공식문서 - RequestRejectedHandler](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/firewall/RequestRejectedHandler.html)
