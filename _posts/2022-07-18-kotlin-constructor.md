@@ -2,7 +2,7 @@
 layout: post
 title: Kotlin/코틀린에서 클래스를 초기화하는 다양한 방법
 date: 2022-07-18
-excerpt: "kotlin의 주 생성자와 초기화 블록, 그리고 부 생성자"
+excerpt: "kotlin의 주 생성자와 초기화 블록, 부 생성자, 그리고 동반 객체의 팩토리 메소드"
 tags: [kotlin, oop, constructor]
 comments: true
 ---
