@@ -11,7 +11,7 @@ comments: true
 ## 스트림이란 무엇인가?
 스트림을 이용하면 ~~멀티스레드 코드를 구현하지 않아도~~ 데이터를 투명하게 병렬로 처리할 수 있다.
 이번에는 메뉴를 구성하는 요리 컬렉션에서 저칼로리 요리명을 반환하고, 칼로리를 기준으로 요리를 정렬하는 코드를 살펴보자.
-```
+```java
 List<Dish> lowCaloricDishes = new ArrayList<>();
 for (Dish dish : menu) { //누적자로 요소 필터링
     if (dish.getCalories() < 400) {
@@ -29,7 +29,7 @@ for (Dish dish : lowCaloricDishes) {
 }
 ```
 위의 코드에서 `lowCaloricDishes`는 컨테이너 역할만 하는 중간 변수, 즉 __가비지 변수__ 이다. 자바 8을 이용해 코드를 개선해보자.
-```
+```java
 List<String> lowCaloricDishesName =
                     menu.stream().filter(d -> d.getCalories() < 400)
                         .filter(d -> d.getCalories() < 400) //400칼로리 이하의 요리 선택
@@ -48,7 +48,7 @@ List<String> lowCaloricDishesName =
 - __파이프라이닝__ : 대부분의 스트림 연산은 스트림 연산끼리 연결해서 커다란 파이프라인을 구성할 수 있도록 스트림 자신을 반환한다.
 - __내부 반복__ : 반복자를 이용해서 명시적으로 반복하는 컬렉션과 달리 스트림은 내부 반복을 지원한다.  
 
-```
+```java
 List<String> threeHighCaloricDishNames = 
                     menu.stream() //메뉴에서 스트림 얻기
                         .filter(d -> d.getCalories() > 300) //고칼로리 요리 필터링
@@ -76,7 +76,7 @@ List<String> threeHighCaloricDishNames =
 ### 외부반복과 내부반복
 컬렉션은 (for-each등을 사용해서) 사용자가 직접 요소를 반복해야 하는데, 이를 __외부 반복__ 이라고 한다.  
 반면, 스트림은 반복을 알아서 처리하고 결과를 어딘가에 저장해주는 __내부 반복__ 을 사용한다. 
-```
+```java
 //for-each를 사용하는 컬렉션의 외부반복
 List<String> names = new ArrayList<>();
 for (Dish dish : menu) {       //메뉴 리스트를 명시적으로 순차 반복
@@ -94,7 +94,7 @@ List<String> names = menu.stream()
 이제 자바가 제공하는 스트림 연산에 대해 알아보자.
 
 ## 스트림 연산
-```
+```java
 List<String> names = menu.stream() //메뉴에서 스트림 얻기
                          .filter(d -> d.getCalories() > 300) //중간 연산
                          .map(Dish::getName) //중간 연산

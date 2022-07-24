@@ -53,7 +53,7 @@ comments: true
 먼저, 처리 객체 Chain을 형성할 하나의 틀 역할을 하는 인터페이스 DistanceChain을 만든다.
 거리 정책에 따라 3개의 클래스가 존재하지만 모두 이 인터페이스를 구현하여 다른 방법으로 요금을 계산하게 된다.
 
-```
+```java
 public interface DistanceChain {
     int calculate(int distance);
 }
@@ -61,7 +61,7 @@ public interface DistanceChain {
 
 그리고 정책에 따른 계산 로직을 포함하는 3개의 클래스를 각각 DistanceChain을 이용해 만든다.
 
-```
+```java
 // ~ 10km : 기본 요금(1,250원)
 public class DefaultDistance implements DistanceChain {
     private static final int BASIC_FARE = 1250; // 기본요금
@@ -86,7 +86,7 @@ public class DefaultDistance implements DistanceChain {
 }
 ```
 
-```
+```java
 // 10 ~ 50km : 100원 / 5km
 public class SecondDistance implements DistanceChain {
     private static final int UNIT = 5; // 추가요금 단위 (5km)
@@ -113,7 +113,7 @@ public class SecondDistance implements DistanceChain {
 }
 ```
 
-```
+```java
 // 50km ~ : 100원 / 8km
 public class ThirdDistance implements DistanceChain {
     private static final int UNIT = 8; // 추가요금 단위 (8km)
@@ -129,7 +129,7 @@ public class ThirdDistance implements DistanceChain {
 
 그리고 이 정책 클래스들을 체이닝 시켜주고 요금계산 요청을 받는 매니저(?) 역할을 하는 클래스를 하나 만들었다.
 
-```
+```java
 public class ChainOfDistance {
     // 이 클래스에서 거리 요금 정책의 임계값들을 모두 갖고 있음
     private static final int FIRST_THRESHOLD = 10;
@@ -153,7 +153,7 @@ public class ChainOfDistance {
 
 이렇게 하면 이제 거리에 따른 요금을 계산할 때, 다음과 같이 ChainOfDistance의 calculate() 메서드만 호출하면 된다.
 
-```
+```java
 // subway/path/domain/fare/Fare.class
 public int calculate(int extraFare, int distance) {
     // Fare 내부에서 ChainOfDistance 와 직접 의존성을 갖고 있음
@@ -171,7 +171,7 @@ public int calculate(int extraFare, int distance) {
 **DistanceChain 인터페이스 의존성을 가지고 있는 구조**로 수정했다.
 Spring을 사용하고 있으므로 @Bean 등록을 통해 체이닝 작업을 Config에서 하도록 수정했다. 
 
-```
+```java
 @Configuration
 public class DistanceChainConfig {
     private static final int FIRST_THRESHOLD = 10;
@@ -189,7 +189,7 @@ public class DistanceChainConfig {
 이렇게 하면 기존에 모든 Chain 객체들을 생성하고 체이닝 작업을 해주었던 ChainOfDistance 클래스가 필요없어지고
 Fare 클래스에서 ChainOfDistance 클래스가 아닌 **DistanceChain 인터페이스에 의존성을 갖도록 구조가 바뀐다.**
 
-```
+```java
 public class Fare {
     private final DistanceChain defaultChain;
     private final AgeStrategy ageStrategy;

@@ -13,7 +13,7 @@ Optional을 사용하면 이러한 상황들을 방지할 수 있다.
 ### 보수적인 자세로 NullPointerException 줄이기
 예기치 않은 NullPointerException을 피하려면 어떻게 해야할까?
 다음은 null 확인 코드를 추가해서 NullPointerException을 줄이려는 코드다.
-```
+```java
 public String getCarInsuranceName(Person person) {
     if (person != null) {
         Car car = person.getCar();
@@ -29,7 +29,7 @@ public String getCarInsuranceName(Person person) {
 ```
 위의 메서드에서는 모든 변수가 null인지 의심하므로 변수를 접근할 때마다 중첩된 if가 추가되면서 코드 들여쓰기 수준이 증가한다.
 이를 반복하다보면 코드의 구조가 엉망이 되고 가독성도 떨어진다. 다음 코드는 다른 방법으로 이 문제를 해결하는 코드다.
-```
+```java
 public String getCarInsuranceName(Person person) {
     if (person == null) {
         return "Unknown";
@@ -80,14 +80,14 @@ Optional<Car> optCar = Optional.ofNullable(car);
 ### 맵으로 Optional의 값을 추출하고 변환하기
 get 메서드를 이용해서 Optional의 값을 가져올 수 있지만, 만약 Optional이 비어있으면 예외가 발생한다.
 이런 유형의 패턴에 사용할 수 있도록 Optional은 map을 지원한다.
-```
+```java
 Optional<Insurance> optInsurance = Optional.ofNullable(insurance);
 Optional<String> name = optInsurance.map(Insurance::getName);
 ```
 Optional은 값을 포함하면 map의 인수로 제공된 함수가 값을 바꾸고, 비어있으면 아무 일도 일어나지 않는다.
 ### flatMap으로 Optional 객체 연결
 map을 사용하는 방법을 배웠으므로 map을 이용해 코드를 재구현할 수 있다.
-```
+```java
 Optional<Person> optPerson = Optional.of(person);
 Optional<String> name = optPerson.map(Person::getCar)
                                  .map(Car::getInstance)
@@ -97,7 +97,7 @@ Optional<String> name = optPerson.map(Person::getCar)
 변수 optPeople의 형식은 Optional<People>이므로 map을 호출할 수 있지만, getCar는 Optional<Car> 형식의 객체를 반환한다.
 즉, map 연산의 결과는 Optional<Optional<Car>> 형식이 되는 것이다.  
 스트림의 `flatMap`을 이용하면 이러한 문제를 해결할 수 있다. flatMap은 함수를 인수로 받아서 다른 스트림을 반환하는 메서드이다.
-```
+```java
 String name = person.flatMap(Person::getCar)
                     .flatMap(Car::getInsurance)
                     .map(Insurance::getName)

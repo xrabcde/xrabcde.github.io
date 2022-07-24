@@ -27,7 +27,7 @@ comments: true
 ### 2. 람다 표현식을 메서드 참조로 리팩터링하기
 람다 표현식은 쉽게 전달할 수 있는 짧은 코드이지만, __메서드 참조__ 를 이용하면 더 가독성을 높일 수 있다.
 메서드 참조의 메서드명으로 코드의 의도를 명확하게 알릴 수 있기 때문이다.
-```
+```java
 //람다 표현식
 Map<CaloricLevel, List<Dish>> dishesByCaloricLevel = menu.stream()
                         .collect(groupingBy(dish -> {
@@ -44,7 +44,7 @@ Map<CaloricLevel, List<Dish>> dishesByCaloricLevel = menu.stream()
 내장 컬렉터를 이용하면 더 명확한 코드를 작성할 수 있다.
 ### 3. 명령형 데이터 처리를 스트림으로 리팩터링하기
 스트림 API는 데이터 처리 파이프라인의 의도를 더 명확하게 보여준다.
-```
+```java
 //스트림을 사용하지 않은 코드
 List<String> dishNames = new ArrayList<>();
 for(Dish dish: menu) {
@@ -68,7 +68,7 @@ __전략 패턴__ 은 __한 유형의 알고리즘을 보유한 상태에서 런
 - 다양한 알고리즘을 나타내는 한 개 이상의 인터페이스 구현 (ConcreteStrategyA, ConcreteStrategyB 같은 구체적인 구현 클래스)
 - 전략 객체를 사용하는 한 개 이상의 클라이언트
 
-```
+```java
 //람다 사용 전
 Validator numericValidator = new Validator(new IsNumberic());
 boolean b1 = numericValidator.validate("aaaa");
@@ -84,7 +84,7 @@ boolean b2 = lowerCaseValidator.validate("bbbb");
 위처럼 람다를 이용하면 전략 디자인 패턴에서 발생하는 자잘한 코드를 제거할 수 있다. 람다 표현식은 코드조각(또는 전략) 을 캡슐화한다.
 ### 2. 템플릿 메서드
 알고리즘의 개요를 제시한 다음, __알고리즘의 일부를 고칠 수 있는 유연함을 제공__ 해야 할 때는 __템플릿 메서드__ 디자인 패턴을 이용하는 것이 좋다.
-```
+```java
 //람다 사용 전
 abstract class OnlineBanking {
     public void processCustomer(int id) {
@@ -104,7 +104,7 @@ new OnlineBankingLambda().processCustomer(1337, (Customer c) ->
 람다를 사용하면 onlineBanking 클래스를 상속받지 않고 직접 람다 표현식을 전달해 다양한 동작을 추가할 수 있다. 
 ### 3. 옵저버
 어떤 이벤트가 발생했을 때 __주체__ 가 되는 한 객체가 __옵저버__ 라 불리는 다른 객체 리스트에게 자동으로 알림을 보내야 하는 상황에서 __옵저버 디자인 패턴__ 을 사용한다.
-```
+```java
 //람다 사용 전
 class Feed implements Subject {
     private final List<Observer> observers = new ArrayList<>();
@@ -137,7 +137,7 @@ f.registerObserver((String tweet) -> {
 더 정확히 표현하자면 `UnaryOperator<String>` 형식의 인스턴스로 표현할 수 있다. 
 ### 5. 팩토리
 인스턴스화 로직을 클라이언트에 노출하지 않고 객체를 만들 때 __팩토리 디자인 패턴__ 을 사용한다.
-```
+```java
 //람다 사용 전
 public class ProductFactory {
     public static Product createProduct(String name) {
@@ -163,7 +163,7 @@ static {
 하지만, 팩토리 메서드 역시 생성자로 여러 인수를 전달하는 상황에서는 적용하기 어렵다.
 예를 들어, 세 인수를 받는 생성자라면 TriFunction이라는 특별한 함수형 인터페이스를 사용해야 하고,
 결국 다음과 같이 Map의 시그니처가 복잡해진다.
-```
+```java
 public interface TriFunction <T, U, V, R> {
     R apply(T t, U u, V v);
 }
@@ -171,7 +171,7 @@ Map<String, TriFunction<Integer, Integer, String, Product>> map = new HashMap<>(
 ```
 ## 람다 테스팅
 프로그램이 의도대로 동작하는지 확인하기 위해 __단위 테스트__ 를 해볼 수 있다.
-```
+```java
 @Test
 public void testMoveRightBy() throws Exception {
     Point p1 = new Point(5, 5);
@@ -184,7 +184,7 @@ public void testMoveRightBy() throws Exception {
 위의 테스트코드는 `moveRightBy`가 public이므로 문제없이 작동한다.
 하지만 람다는 익명이므로 테스트 코드 이름을 호출할 수 없다.
 따라서 필요하다면 람다를 필드에 저장해서 재사용할 수 있으며 람다의 로직을 테스트할 수 있다.
-```
+```java
 public class Point {
     public final static Comparator<Point> compareByXAndThenY = 
         comparing(Point::getX).thenComparing(Point::getY);
@@ -202,7 +202,7 @@ public void testComparingTwoPoints() throws Exception {
 ### 람다를 사용하는 메서드의 동작에 집중하라
 람다의 목표는 __정해진 동작을 다른 메서드에서 사용할 수 있도록 하나의 조각으로 캡슐화하는 것__ 이다.
 람다 표현식을 사용하는 메서드의 동작을 테스트함으로써 람다를 공개하지 않으면서도 람다 표현식을 검증할 수 있다.
-```
+```java
 public static List<Point> moveAllPointsRightBy(List<Point> points, int x) {
     return points.stream()
                  .map(p -> new Point(p.getX() + x, p.getY()))
@@ -210,7 +210,7 @@ public static List<Point> moveAllPointsRightBy(List<Point> points, int x) {
 }
 ```
 예를 들어, 위 코드에서 `p -> new Point(p.getX() + x, p.getY());` 는 다음과 같이 테스트할 수 있다.
-```
+```java
 @Test
 public void testMoveAllPointsRightBy() throws Exception {
     List<Point> points = 

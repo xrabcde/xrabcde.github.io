@@ -11,7 +11,7 @@ comments: true
 ## 병렬 스트림
 컬렉션에 `parallelStream`을 호출하면 병렬 스트림이 생성된다. 이를 이용하면 아주 간단하게 요소를 병렬로 처리할 수 있다.
 다음은 숫자 n을 인수로 받아 1부터 n까지의 모든 숫자의 합계를 반환하는 메서드를 구현한 코드이다.
-```
+```java
 //기존 코드
 public long sequentialSum(long n) {
     return Stream.iterate(1L, i -> i + 1) //무한 자연수 스트림 생성
@@ -32,7 +32,7 @@ public long parallelSum(long n) {
 ## 스트림 성능 측정
 하지만, 병렬화를 사용한다고 항상 성능이 좋아지는 것은 아니다. 그렇다면 성능에 영향을 주는 요인은 무엇이 있을까?
 ### 박싱 언박싱
-```
+```java
 public long iterativeSum() {
     long result = 0;
     for (long i = 1L; i <= N; i++) {
@@ -43,7 +43,7 @@ public long iterativeSum() {
 ```
 전통적인 `for 루프`를 사용해 반복하는 방법은 기본값을 박싱하거나 언박싱할 필요가 없으므로 앞에서 본 코드보다 더 빠르다.
 ### 분할이 어려운 경우
-```
+```java
 public long parallelSum() {
     return Stream.iterate(1L, i -> i + 1)
                  .limit(N)

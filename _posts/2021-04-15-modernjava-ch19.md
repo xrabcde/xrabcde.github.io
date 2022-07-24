@@ -21,7 +21,7 @@ comments: true
 1. 인자를 여러 개 받는 함수를 분리하여, 인자를 하나씩만 받는 함수의 체인으로 만드는 방법
 2. 다중 인수를 갖는 함수를 단일 인수를 갖는 함수들의 함수열로 바꾸는 방법
 
-```
+```java
 //기존 코드
 static double converter(double x, double y, double z) {
     return x * y + z;
@@ -47,7 +47,7 @@ convertKmtoMi.applyAsDouble(20);
 **결과 자료구조를 바꾸지 말라** 하지만, 자료구조 갱신 시마다 자료구조를 통째로 복사하는 건 낭비다.
 
 ### 트리 예제
-```
+```java
 zs = xs.append(ys);
 ```
 다른 자료구조와 공통부분을 공유하여 메모리를 절약할 수 있다.

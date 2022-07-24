@@ -15,7 +15,7 @@ __디폴트 메서드__ 기능을 사용하는 것이다.
 
 ## 변화하는 API
 API를 바꾸는 것이 왜 어려운지 예제를 통해 알아보자.
-```
+```java
 // Resizable 인터페이스의 초기 버전
 public interface Resizable extends Drawable {
 	int getWidth();
@@ -25,7 +25,7 @@ public interface Resizable extends Drawable {
 	void setAbsoluteSize(int width, int height);
 }
 ```
-```
+```java
 // 사용자의 구현
 public class Ellipse implementes Resizable {
 	...
@@ -40,7 +40,7 @@ public class Game {
 }
 ```
 
-```
+```java
 // setRelativeSize 메서드를 추가한 새로운 버전의 Resizable 
 public interface Resizable extends Drawable {
 	int getWidth();
@@ -60,7 +60,7 @@ public interface Resizable extends Drawable {
 - 호환성을 유지하면서 API를 바꿀 수 있도록 해주는 기능
 - 이름 그대로 인터페이스 자체에서 구현
 
-```
+```java
 public interface Sized {
 	int size();
 	default boolean isEmpty() { //디폴트 메서드
@@ -71,7 +71,7 @@ public interface Sized {
 - 인터페이스를 구현하는 모든 클래스는 디폴트 메서드의 구현도 상속받음
 - 호환성을 유지하며 라이브러리를 고칠 수 있음
 
-```
+```java
 default void setRelativeSize(int wFactor, int hFactor) {
 	setAbsoluteSize(getWidth() / wFactor, getHeight() / hFactor);
 }
@@ -86,7 +86,7 @@ default void setRelativeSize(int wFactor, int hFactor) {
 ### 1. 선택형 메서드
 잘 사용하지 않는 메서드에 기본 구현을 제공할 수 있으므로 인터페이스를 구현하는 클래스에서 빈 구현을 제공할 필요가 없다.
 → **불필요한 코드를 줄일 수 있음**
-```
+```java
 interface Iterator<T> {
 	boolean hasNext();
 	T next();
@@ -105,7 +105,7 @@ interface Iterator<T> {
 어떤 모양은 회전이 불가능하지만, 크기조절이 가능하고,  
 어떤 모양은 회전가능하고 움직일 수 있지만 크기 조절이 불가능하다고 할 때
 어떻게 최대한 기존 코드를 재사용해서 이 기능을 구현할 수 있을까?
-```
+```java
 public interface Rotatable {
 	void setRotationAngle(int angleInDegrees);
 	int getRotationAngle();
@@ -116,7 +116,7 @@ public interface Rotatable {
 ```
 Rotatable 인터페이스를 구현하는 클래스는 setRotationAngle과 getRotationAngle의 구현을 제공해야하지만,
 rotateBy는 기본 구현이 제공되므로 구현을 제공하지 않아도 됨.
-```
+```java
 public interface Movable {
 	int getX();
 	int getY();
@@ -128,7 +128,7 @@ public interface Movable {
 	}
 }
 ```
-```
+```java
 public interface Resizable {
 	...
 }
@@ -138,7 +138,7 @@ public interface Resizable {
 위 세 인터페이스를 조합해 만든 움직일 수 있고, 회전가능하며, 크기조절 가능한 Monster 클래스 
 -> Rotatable, Moveable, Resizable의 디폴트 메서드를 **자동 상속 받음**
 
-```
+```java
 public class Monster implements Rotatable, Moveable, Resizable {
 	...
 }
@@ -149,7 +149,7 @@ m.moveVertically(10); //Moveable의 moveVertically 호출
 ```
 
 움직일 수 있고, 회전가능하지만, 크기조절이 불가능한 Sun 클래스
-```
+```java
 public class Sun implements Moveable, Rotatable {
 	...
 }
@@ -159,7 +159,7 @@ public class Sun implements Moveable, Rotatable {
 ## 해석 규칙
 어떤 클래스가 같은 디폴트 메서드 시그니처를 포함하는 두 인터페이스를 구현하는 상황이라면 어떻게 될까?
 이를 해결할 수 있는 규칙에 대해 알아보자.
-```
+```java
 public interface A {
 	default void hello() {
 		System.out.println("Hello from A");
@@ -188,7 +188,7 @@ public class C implements B, A {
 **클래스가 명시적으로 디폴트 메서드를 오버라이드하고 호출**해야 한다.
    
 ### 디폴트 메서드를 제공하는 서브인터페이스가 이긴다
-```
+```java
 public interface A {
 	default void hello() {
 		System.out.println("Hello from A");
@@ -207,7 +207,7 @@ public class C implements B, A {
 	}
 }
 ```
-```
+```java
 public class D implements A {  }
 public class C extends D implements B, A {
 	public static void main(String... args) {
@@ -216,7 +216,7 @@ public class C extends D implements B, A {
 }
 ```
 클래스나 슈퍼클래스에 **메서드에 대한 정의가 없을 때**는 디폴트 메서드를 정의하는 서브인터페이스가 선택된다.
-```
+```java
 public class D implements A {
 	void hello() {
 		System.out.println("Hello from D");
@@ -232,7 +232,7 @@ public class C extends D implements B, A {
 D가 명시적으로 A의 hello를 오버라이드
 
 ### 충돌 그리고 명시적인 문제 해결
-```
+```java
 public interface A {
 	default void hello() {
 		System.out.println("Hello from A");
@@ -250,7 +250,7 @@ public class C implements B, A { }
 ⇒ `Error: class C inherits unrelated defaults for hello() from types B and A.`
 
 ⇒ 개발자가 직접 클래스 C에서 사용하려는 메서드를 명시적으로 오버라이드 해야 함 `X.super.m()`
-```
+```java
 public class C implements B, A {
 	void hello() {
 		B.super.hello(); //명시적으로 인터페이스 B의 메서드를 선택
@@ -258,7 +258,7 @@ public class C implements B, A {
 } 
 ```
 ### 다이아몬드 문제
-```
+```java
 public interface A {
 	default void hello() {
 		System.out.println("Hello from A");

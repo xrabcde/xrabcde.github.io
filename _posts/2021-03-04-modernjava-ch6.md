@@ -11,32 +11,32 @@ comments: true
 ## 리듀싱과 요약
 reducing 대신 아래의 컬렉터들을 사용하면 프로그래밍적 편의성과 코드의 가독성을 개선할 수 있다.
 - `counting` : 개수를 카운트
-```
+```java
 //기존 코드
 long howManyDishes = menu.stream().collect(Collectors.counting());
 //개선된 코드
 long howMabyDishes = menu.stream().count();
 ```
 - `maxBy`, `minBy` : 스트림의 최댓값, 최솟값 계산
-```
+```java
 Comparator<Dish> dishCaloriesComparator = Comparator.comparingInt(Dish::getCalories);
 Optional<Dish> mostCalorieDish = menu.stream().collect(maxBy(dishCaloriesComparator));
 ```
 menu가 비어있다면 아무 요리도 반환하지 않기 때문에 `Optional<Dish>`를 사용한다.
 - `summingInt` : 객체를 int로 매핑하는 함수를 인수로 받아 합을 계산
-```
+```java
 int totalCalories = menu.stream().collect(summingInt(Dish::getCalories));
 ```
 - `averagingInt` : 객체를 int로 매핑하는 함수를 인수로 받아 평균을 계산
-```
+```java
 double avgCalories = menu.stream().collect(averagingInt(Dish::GetCalories));
 ```
 - `summarizingInt` : 요소 수, 합계, 평균, 최댓값, 최솟값 등을 계산
-```
+```java
 IntSummaryStatistics menuStatistics = menu.stream().collect(summarizingInt(Dish::getCalories));
 ```
 - `joining` : 내부적으로 StringBuilder를 이용해 문자열을 하나로 만듦
-```
+```java
 String shortMenu = menu.stream().map(Dish::getName).collect(joining());
 //리스트를 콤마로 구분해 출력
 String shortMenu = menu.stream().map(Dish::getName).collect(joining(", "));
@@ -49,14 +49,14 @@ reduce는 두 값을 하나로 도출하는 불변형 연산이라는 점에서 
 
 ## 그룹화
 그룹화를 명령형으로 구현하면 까다롭고, 에러도 많이 발생한다. 하지만, 함수형을 이용하면 가독성 있는 한 줄의 코드로 그룹화를 구현할 수 있다.
-```
+```java
 Map<Dish.Type, List<Dish>> dishesByType = menu.stream().collect(groupingBy(Dish::getType));
 ```
 스트림의 각 요리에서 Dish, Type와 일치하는 모든 요리를 추출하는 함수를 groupingBy 메서드로 전달했다.
 이 함수를 기준으로 스트림이 그룹화되므로 이를 __분류 함수__ 라고 부른다.
 ### 그룹화된 요소 조작
 Map 형태로 되어있는 코드에 filtering을 적용해보자.
-```
+```java
 Map<Dish.Type, List<Dish>> caloricDishesByType = menu.stream()
                     .collect(groupingBy(Dish::getType,
                             filtering(dish -> dish.getCalories() > 500, toList())));                 
@@ -65,7 +65,7 @@ Map<Dish.Type, List<Dish>> caloricDishesByType = menu.stream()
 
 ## 분할
 분할 함수는 불리언을 반환하므로 맵의 키 형식은 Boolean이다. 결과적으로 그룹화 맵은 최대 두 개의 그룹으로 분류된다. (참 or 거짓)
-```
+```java
 Map<Boolean, List<Dish>> partitionedMenu =
             menu.stream().collect(partitioningBy(Dish::isVegetarian));
 //결과
@@ -79,7 +79,7 @@ List<Dish> vegetarianDishes = partitionedMenu.get(true);
 이를 활용하면, 참인 그룹과 거짓인 그룹 각각에서 최댓값과 최솟값을 찾을 수 있다.
 ### 숫자를 소수와 비소수로 분할하기
 `isPrime` 메서드와 `partitioningBy` 컬렉터로 숫자를 소수와 비소수로 분류할 수 있다.
-```
+```java
 public Map<Boolean, List<Integer>> partitionPrimes(int n) {
     return IntStream.rangeClosed(2, n).boxed()
                 .collect(partitioningBy(candidate -> isPrime(candidate)));
@@ -88,7 +88,7 @@ public Map<Boolean, List<Integer>> partitionPrimes(int n) {
 
 ## Collector 인터페이스
 지금까지 살펴본 것과 같은 리듀싱 연산을 직접 만들 수도 있다. Collector 인터페이스를 직접 구현해서 더 효율적인 컬렉터를 만드는 방법을 알아보자.
-```
+```java
 //Collector 인터페이스
 public interface Collector<T, A, R> {
     Supplier<A> supplier();

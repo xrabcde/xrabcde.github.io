@@ -31,7 +31,7 @@ _'먼저 프로그램 내에 synchronized라는 키워드가 발견된다면 제
 ### 선언형 프로그래밍
 프로그램으로 시스템을 구현하는 방식은 크게 **'어떻게'** 와 **'무엇을'** 로 구분할 수 있다.
 먼저, '어떻게'에 집중하는 방식은 고전의 객체지향에서 이용하는 방식으로 명령형 프로그래밍이라고 부르기도 한다.
-```
+```java
 //리스트에서 가장 비싼 트래잭션 구하기 
 for (Transaction t: transactions.subList(1, transactions.size())) {
     if (t.getValue() > mostExpensive.getValue()) {
@@ -42,7 +42,7 @@ for (Transaction t: transactions.subList(1, transactions.size())) {
 
 '어떻게'가 아닌 '무엇을'에 집중하는 방식은 4장과 5장에서 스트림 API를 이용하는 방법으로 적용할 수 있다.
 선언형 프로그래밍은 문제 자체가 코드로 명확하게 드러난다는 장점이 있다.
-```
+```java
 Optional<Transaction> mostExpensive = transactions.stream().max(comparing(Transaction::getValue));
 ``` 
 이와 같은 구현 방식을 **내부 반복** 이라고 한다. 질의문 자체를 어떻게 푸는지 명확하게 보여준다는 것이 내부 반복 프로그래밍의 장점이다.
@@ -82,14 +82,14 @@ Optional<Transaction> mostExpensive = transactions.stream().max(comparing(Transa
 순수 함수형 프로그래밍 언어에서는 while, for와 같은 반복문을 포함하지 않는다. 이러한 반복문 때문에 변화가 자연스럽게 코드에 스며들 수 있기 때문이다.
 while의 경우, 무한루프를 방지하기 위해 조건을 계속 갱신해줘야 한다.
 함수형 프로그래밍에서는 변화를 알아차리지만 못하면 괜찮다고 했으므로 지역 변수는 자유롭게 갱신할 수 있다.
-```
+```java
 Iterator<Apple> it = apples.iterator();
 while (it.hasNext()) {
     Apple apple = it.next();
 }
 ```
 위 코드에서 호출자는 변화를 확인할 수 없으므로 아무 문제가 없지만, 다음 코드는 문제가 될 수 있다.
-```
+```java
 public void searchForGold(List<String> l, Stats stats) {
     for(String s: l) {
         if("gold".equals(s)) {
@@ -106,7 +106,7 @@ public void searchForGold(List<String> l, Stats stats) {
 일반적으로 반복코드보다 재귀 코드가 더 비싸다. 함수를 호출할 때마다 호출 스택에 각 호출시 생성되는 정보를 저장할
 새로운 스택 프레임이 만들어지므로 메모리 사용량이 증가하기 때문이다.
 함수형 언어에서는 **꼬리 호출 최적화**라는 해결책을 제공한다.
-```
+```java
 static long factorialTailRecursive(long n) {
     return factorialHelper(1, n);
 }

@@ -54,7 +54,7 @@ comments: true
 
 ### BatchUpdate
 - 구간정보를 한 번에 DB에 insert하기 위해 사용
-  ```
+  ```java
   //내부적으로 batchList를 batchSize만큼 처리
   jdbcTemplate.batchUpdate(INSERT_SQL, batchList, batchSize, (ps, arg) -> {})
   jdbcTemplate.batchUpdate(INSERT_SQL, sections, sections.size(), (ps, arg) -> {})

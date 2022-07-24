@@ -16,7 +16,7 @@ comments: true
 - 템플릿 메서드 패턴 : hook method (변경 x) + abstract method (자유롭게 변경)
 
 ### 기존 deleteAll 의 문제점
-```
+```java
 public void deleteAll() throws SQLException {
 	Connection c = dataSource.getConnection();
 	PreparedStatement ps = c.prepareStatement("delete from users");
@@ -58,7 +58,7 @@ public void deleteAll() throws SQLException {
 - 이름을 갖지 않는 클래스
 - 클래스 선언과 오브젝트 생성이 결합된 형태로 만들어짐
 - 클래스를 재사용할 필요가 없고, 구현한 인터페이스 타입으로만 사용할 경우 유용
-  ```
+  ```java
   new 인터페이스이름() { 클래스 본문 };
   ```
 - 구현하는 인터페이스를 생성자처럼 이용해 오브젝트로 만든다

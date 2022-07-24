@@ -55,7 +55,7 @@ repo에 `계정명/저장소이름` 을 입력하고 블로그 포스트와 이�
 </div>
 
 설정을 마치면 html 스크립트가 나온다.
-```
+```html
 <script src="https://utteranc.es/client.js"
         repo="xrabcde/xrabcde.github.io-comments"
         issue-term="pathname"
