@@ -9,12 +9,12 @@ comments: true
 
 똑같은 기능의 객체를 매번 생성하기보다는 객체 하나를 재사용하는 것이 좋다.
 특히, 불변 객체는 언제든 재사용할 수 있다.
-```
+```java
 String s = new String("test");
 ```
 위의 코드는 **실행될 때마다 String 인스턴스를 새로 만드는 비효율적인 코드**이다.
 이 코드가 반복문이나 빈번히 호출되는 메서드 안에 있다면 필요없는 String 인스턴스가 수백만 개 만들어질 수도 있다.
-```
+```java
 String s = "test";
 ```
 반면 이 코드는 **새로운 인스턴스를 매번 만드는 대신 하나의 String 인스턴스를 사용**한다.
@@ -22,7 +22,7 @@ String s = "test";
 생성자 대신 정적 팩터리 메서드를 제공하는 불변 클래스에서는 정적 팩터리 메서드를 사용해 불필요한 객체 생성을 피할 수 있다.
 생성자는 호출할 때마다 새로운 객체를 만들지만, 팩터리 메서드는 그렇지 않다.
 
-```
+```java
 // 권장하지 않는 코드
 static boolean isRomanNumeral(String s) {
     return s.matches("^(?~~})");
@@ -45,7 +45,7 @@ public class RomanNumerals {
 이 메서드가 호출될 때마다 이 인스턴스를 재사용하게 된다.
 이렇게 개선하면 메서드가 빈번히 호출되는 상황에서 성능을 상당히 개선할 수 있을 뿐 아니라, 코드도 더 명확해진다.
 
-```
+```java
 private static long sum() {
     Long sum = 0L;
     for (long i = 0; i <= Integer.MAX_VALUE; i++) {

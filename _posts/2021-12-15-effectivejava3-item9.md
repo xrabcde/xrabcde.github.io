@@ -15,7 +15,7 @@ close 메서드를 호출해 직접 닫아줘야 하는 자원이 많다.
 ### try-finally
 전통적으로 자원을 닫는 방법으로 `try-finally`를 사용해왔다.
 예외가 발생하거나 메서드에서 반환되는 경우를 포함해서 말이다.
-```
+```java
 static String firstLineOfFile(String path) throw IOException {
     BufferedReader br = new BufferedReader(new FileReader(path));
     try {
@@ -28,7 +28,7 @@ static String firstLineOfFile(String path) throw IOException {
 
 이 코드에서 만약, 자원이 둘 이상이라면 어떻게 될까?
 
-```
+```java
 static void copy(String src, String dst) throws IOException {
 	InputStream in = new FileInputStream(src);
 	try {
@@ -54,7 +54,7 @@ try를 하던 중 예외가 발생하더라도 close 메서드를 호출할 때 
 ### try-with-resources
 `try-finally`가 가지는 문제들을 자바 7부터 제공하는 `try-with-resources`에서 모두 해결해주었다.
 (이 구조를 사용하려면 **해당 자원이 `AutoCloseable` 인터페이스를 구현해야 한다.**)
-```
+```java
 static void copy(String src, String dst) throws IOException {
 	try (InputStream in = new FileInputStream(src);
 		OutputStream out = new FileOutputStream(dst)) {
@@ -71,7 +71,7 @@ static void copy(String src, String dst) throws IOException {
 아까와 마찬가지로 두 가지 예외가 발생한다면 close에서 발생한 두 번째 예외는 숨겨지고
 첫 번째 예외가 기록된다.
 
-```
+```java
 static String firstLineOfFile(String path) throw IOException {
     try (BufferedReader br = new BufferedReader(new FileReader(path))) {
         return br.readLine();

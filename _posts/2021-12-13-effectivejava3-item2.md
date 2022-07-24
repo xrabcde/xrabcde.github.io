@@ -32,7 +32,7 @@ comments: true
 그런 다음 빌더 객체가 제공하는 일종의 세터 메서드들로 원하는 선택 매개변수들을 설정한다.
 마지막으로 매개변수가 없는 build 메서드를 호출해 (보통은 불변인) 객체를 얻는다.
 빌더는 생성할 클래스 안에 정적 멤버 클래스로 만들어두는 것이 일반적이다.
-```
+```java
 public class Test {
     private final int size;
     private final int weight;
@@ -62,7 +62,7 @@ Test 클래스는 불변이며, 모든 매개변수의 기본값들을 한 곳�
 빌더의 setter 메서드들은 빌더 자신을 반환하기 때문에 연쇄적으로 호출할 수 있다.
 빌더패턴을 사용하는 코드는 쓰기 쉽고, 읽기 쉽다.
 
-```
+```java
 // 위의 빌더패턴을 사용하는 부분의 코드
 Test test = new Test.Builder(10).weight(20);
 ```

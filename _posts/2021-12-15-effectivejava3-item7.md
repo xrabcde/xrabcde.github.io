@@ -9,7 +9,7 @@ comments: true
 
 ### 메모리 누수
 
-```
+```java
 public class Stack {
     private Object[] elements;
     private int size = 0;
@@ -51,7 +51,7 @@ elements 배열의 활성 영역(인덱스가 size보다 작은 원소들) 밖�
 
 ### 메모리 누수 해결
 
-```
+```java
 public Object pop() {
     if (size == 0) {
         throw new EmptyStackException();

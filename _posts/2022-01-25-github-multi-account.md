@@ -11,12 +11,12 @@ comments: true
 
 ## 개인 계정으로 ssh-key 생성
 - 먼저 개인 계정의 ssh-key를 생성한다.
-```
+```bash
 $ ssh-keygen -t rsa -b 4096 -C 'xrabcde@gmail.com'
 ```
 - `Enter file in which to save the key (/Users/hwang/.ssh/id_rsa):` 가 나오면 아무것도 입력하지 않고 그냥 엔터를 쳐 기본 파일명(`id_rsa`)으로 ssh-key를 생성한다.
 - 생성한 ssh-key를 등록해준다.
-```
+```bash
 $ ssh-add -K ~/.ssh/id_rsa
 ```
 <div style="width:100% !important; margin:0 auto">
@@ -32,7 +32,7 @@ $ ssh-add -K ~/.ssh/id_rsa
 <img src="/assets/img/github_multi3.png" alt="github_multi3.png">
 </div>
 - Title에는 본인이 키를 식별할 수 있도록 적절히 텍스트를 입력하고 Key 부분에는 위에서 생성한 ssh key값을 복사해서 입력
-```
+```bash
 $ pbcopy < ~/.ssh/id_rsa.pub //id_rsa.pub가 클립보드에 복사됨
 ```
 
@@ -45,7 +45,7 @@ $ pbcopy < ~/.ssh/id_rsa.pub //id_rsa.pub가 클립보드에 복사됨
 ## 회사 계정으로 ssh-key 생성
 - 그 다음 이 과정을 반복하여 회사 계정의 ssh-key를 생성해주는데 이번에는 파일 이름을 지정해주어야 하므로  
 `Enter file in which to save the key (/Users/hwang/.ssh/id_rsa):` 에 본인이 구분할 수 있는 `id_rsa_work` 과 같은 이름을 입력한다.
-```
+```bash
 $ ssh-keygen -t rsa -b 4096 -C 'bada.jo@kakaoenterprise.com'
 ```
 <div style="width:100% !important; margin:0 auto">
@@ -53,7 +53,7 @@ $ ssh-keygen -t rsa -b 4096 -C 'bada.jo@kakaoenterprise.com'
 </div>
 
 - 마찬가지로 이번에 생성한 ssh-key도 등록해준다.
-```
+```bash
 $ ssh-add -K ~/.ssh/id_rsa_work
 $ pbcopy < ~/.ssh/id_rsa_work.pub //id_rsa_work.pub가 클립보드에 복사됨
 ```
@@ -76,7 +76,7 @@ $ pbcopy < ~/.ssh/id_rsa_work.pub //id_rsa_work.pub가 클립보드에 복사됨
 
 ## .ssh/config 생성
 - 이제 두 가지 계정을 편하게 사용하기 위해 SSH 설정파일을 작성해야 한다.
-```
+```bash
 $ cd ~/.ssh
 $ vi config
 ```
@@ -99,12 +99,12 @@ Host xrabcde
     <img src="/assets/img/github_multi8.png" alt="github_multi8.png">
     </div>
 - ssh config 설정 이후 프로젝트 클론 받는 경우 : git@`xrabcde` 와 같이 위에서 지정한 Host 네임을 입력해주어야 한다.
-```
+```bash
 $ git clone git@xrabcde:xrabcde/xrabcde.github.io.git
 ```
 
 - 이미 이전에 클론 받은 프로젝트의 경우 : remote url을 확인한 후 원하는 url로 변경해준다.
-```
+```bash
 $ git remote -v
 $ git remote set-url origin git@work:C**/repo-name.git
 ```

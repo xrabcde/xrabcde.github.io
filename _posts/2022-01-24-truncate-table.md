@@ -15,14 +15,14 @@ comments: true
 
 # 과정
 1. 먼저 데이터베이스의 외래키 검사 옵션을 해제해준다.
-```
+```sql
 SET foreign_key_checks = 0;
 ````
 
 2. DB의 전체 테이블에 대한 TRUNCATE를 실행한다.
 나의 경우, flyway를 사용하고 있었기 때문에 flyway_schema_table을 제외한 나머지 테이블을 TRUNCATE 해주는 명령문을 직접 작성했다.
 (만약, 모든 테이블에 대해서 TRUNCATE할 경우라면 CONCAT을 이용하는 방법도 있다.)
-```
+```sql
 TRUNCATE TABLE map;
 TRUNCATE TABLE member;
 TRUNCATE TABLE preset;
@@ -31,6 +31,6 @@ TRUNCATE TABLE space;
 ````
 
 3. 해제했던 외래키 검사 옵션을 다시 복원한다.
-```
+```sql
 SET foreign_key_checks = 1;
 ````

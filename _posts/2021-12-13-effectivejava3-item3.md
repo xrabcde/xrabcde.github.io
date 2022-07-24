@@ -13,7 +13,7 @@ comments: true
 두 방식 모두 생성자는 private으로 감춰두고, 유일한 인스턴스에 접근할 수 있는 수단으로 public static 멤버를 하나 둔다.
 
 ### public static 멤버가 final 필드인 방식
-```
+```java
 public class Test {
     public static final Test INSTANCE = new Test();
     private Test() {..}
@@ -28,7 +28,7 @@ public static 필드가 final이니 절대로 다른 객체를 참조할 수 없
 두 번째 장점은 바로 간결함이다.
 
 ### 정적 팩터리 메서드를 public static 멤버로 제공하는 방식
-```
+```java
 public class Test {
     private static final Test INSTANCE = new Test();
     private Test() {..}
@@ -49,7 +49,7 @@ Test.getInstance는 항상 같은 객체의 참조를 반환하므로 INSTANCE�
 단순히, Serializable을 구현한다고 선언하기만 한다면 직렬화된 인스턴스를 역직렬화할 때마다 새로운 인스턴스가 만들어진다.
 이를 방지하기 위해서는 **모든 인스턴스 필드에 transient(직렬화 제외) 키워드를 선언하고 readResolve 메서드를 제공해야 한다.**
 
-```
+```java
 // 싱글턴임을 보장해주는 메서드
 private Object readResolve() {
     return INSTANCE;
@@ -57,7 +57,7 @@ private Object readResolve() {
 ```
 
 ### 원소가 하나인 열거 타입을 선언하는 방식
-```
+```java
 public enum Test {
     INSTANCE;
     

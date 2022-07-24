@@ -15,7 +15,7 @@ HTTPS 연결을 위해 보통 무료로 사용가능한 letsencrypt를 많이 �
 ### 처음으로 도메인을 등록하는 경우
 letsencrypt를 설치하고 처음 도메인을 등록할 때 보통 아래와 같은 명령어를 사용한다.
 (나의 경우, Docker를 이용해 Reverse proxy를 구성했지만 Docker를 사용하지 않아도 무방하다)
-```
+```bash
 $ docker run -it --rm --name certbot \
   -v '/etc/letsencrypt:/etc/letsencrypt' \
   -v '/var/lib/letsencrypt:/var/lib/letsencrypt' \
@@ -24,7 +24,7 @@ $ docker run -it --rm --name certbot \
 
 여기서 `-d`를 이용하면 체인형식으로 서브도메인을 연결할 수 있다.  
 `-d 'example.com' -d '*.example.com'`
-```
+```bash
 $ docker run -it --rm --name certbot \
   -v '/etc/letsencrypt:/etc/letsencrypt' \
   -v '/var/lib/letsencrypt:/var/lib/letsencrypt' \
@@ -62,8 +62,8 @@ TXT 레코드가 잘 등록이 되었다면 위의 사이트에서 이렇게 두
 이미 도메인을 등록한 상황이라면 인증서를 굳이 재발급하지 않고도 체인에 도메인을 추가하거나 삭제할 수 있다.  
 처음 인증서를 발급할 때와 비슷하게 명령어에 `-d`로 연결하여 도메인 정보를 입력해준다.
 
-```
-certbot --cert-name zzimkkong.com -d zzimkkong.com -d www.zzimkkong.com -d api.zzimkkong.com
+``` bash
+$ certbot --cert-name zzimkkong.com -d zzimkkong.com -d www.zzimkkong.com -d api.zzimkkong.com
 ```
 
 여기서 `--cert-name` 뒤에 나오는 `zzimkkong.com`은 체인명이고, 그 뒤에 나오는 `-d zzimkkong.com`이 도메인명이다.  

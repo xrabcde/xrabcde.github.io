@@ -98,8 +98,8 @@ HEXISTS key field // key에 field가 존재하면 1, 존재하지 않는다면 0
 설치 방법은 여러 가지가 있다.
 깃헙 레포 Release에서 dmg 파일을 다운받아 설치하거나 앱스토어에서 유료로 구매하는 방법이 있는데 나의 경우는 brew로 설치했다.
 
-```
-brew install --cask another-redis-desktop-manager
+```bash
+$ brew install --cask another-redis-desktop-manager
 ```
 
 *여기서 맥 보안설정 관련 팝업(확인되지 않은 개발자의 소프트웨어)이 뜨는 경우가 있는데 `설정 > 보안 및 개인 정보 보호`에서 `확인 없이 열기`를 클릭해주면 된다.*

@@ -25,7 +25,7 @@ comments: true
 
 먼저 인증서 갱신작업을 시작하기 전에 작업 후 인증서가 잘 갱신되었는지를 비교하기 위해 현재 인증서의 정보를 확인해준다.
 
-```
+```bash
 $ sudo certbot certificates
 ```
 
@@ -38,7 +38,7 @@ $ sudo certbot certificates
 ## 인증서 자동 갱신방법
 Letsencrypt로 발급받은 인증서를 갱신하는 방법은 매우 간단하다.
 
-```
+```bash
 $ sudo certbot renew --dry-run
 ```
 
@@ -53,7 +53,7 @@ $ sudo certbot renew --dry-run
 
 정상적으로 성공했다는 안내가 나오면 `--dry-run` 옵션을 빼고 명령어를 입력해주면 된다.
 
-```
+```bash
 $ sudo certbot renew
 ```
 
@@ -83,7 +83,7 @@ All renewal attempts failed. The following certs could not be renewed:
 
 그렇다면 어쩔 수 없이 [인증서를 발급받았던 과정](https://xrabcde.github.io/letsencrypt-subdomain/)을 참고해 인증서를 수동 갱신해보자.
 
-````
+````bash
 $ docker run -it --rm --name certbot \
   -v '/etc/letsencrypt:/etc/letsencrypt' \
   -v '/var/lib/letsencrypt:/var/lib/letsencrypt' \
@@ -180,7 +180,7 @@ NEXT STEPS:
 
 이제 nginx를 재시작해서 새로운 인증서를 적용해주자.
 
-```
+```bash
 $ sudo service nginx restart
 $ sudo service nginx satus // nginx 상태 확인
 ```
@@ -188,7 +188,7 @@ $ sudo service nginx satus // nginx 상태 확인
 ## 인증서 갱신 확인
 마지막으로 인증서가 잘 갱신되었는지 확인하기 위해 인증서 정보를 확인해준다.
 
-```
+```bash
 $ sudo certbot certificates
 ```
 

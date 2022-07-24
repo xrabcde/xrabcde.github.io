@@ -20,7 +20,7 @@ comments: true
 ### application properties 설정
 먼저 우리 팀은 인스턴스 2개를 하나는 DB용, 하나는 WAS용으로 사용하기로 하고, 8080포트에 운영용 환경을 먼저 구축해놓은 상태였다.
 
-```
+```bash
 # application-prod.properties
 server.port=8080
 
@@ -29,7 +29,7 @@ spring.datasource.url=jdbc:mysql://{db의 private IP}:3306/zzimkkong
 
 여기에 8081포트로 DEV용 WAS를 하나 더 띄우면서 DB도 운영용과 개발용을 분리하기 위해 `application-dev.properties`에 다음과 같은 설정을 추가했다.
 
-```
+```bash
 # application-dev.properties
 server.port=8081
 
@@ -59,26 +59,26 @@ spring.datasource.url=jdbc:mysql://{db의 private IP}:3306/zzimkkong_dev
 <img src="/assets/img/nginx_subdomain3.png" alt="nginx_subdomain3.png">
 </div>
 
-```
+```bash
 $ sudo apt-get install nginx
 ```
 
 nginx 설치 후 기존의 설정 파일을 삭제해준다. 여기서부터 등장하는 `sites-enabled`와 `sites-available`을 혼동하지 않도록 주의하자!! ~~(나도 알고싶지 않았...ㄷ...)~~
 두 가지 default 파일을 모두 삭제한다.
 
-```
+```bash
 $ rm /etc/nginx/sites-enabled/default
 $ rm /etc/nginx/sites-available/default
 ```
 
 그 다음 `sites-enabled`에 두 개의 새로운 설정 파일을 작성한다. 나의 경우, dev용과 prod용이 필요했기 때문에 `dev.conf`와 `prod.conf` 두 개를 작성했다.
 
-```
+```bash
 $ vi /etc/nginx/sites-enabled/dev.conf
 $ vi /etc/nginx/sites-enabled/prod.conf
 ```
 
-```
+```bash
 # dev.conf
 
 server {
@@ -103,7 +103,7 @@ server {
 }
 ```
 
-```
+```bash
 # prod.conf
 
 server {
@@ -130,7 +130,7 @@ server {
 
 두 파일에서 확인해줘야하는 부분은 **ssl key의 경로, proxy_pass의 포트번호, server_name과 redirect 주소**이다. 이제 이렇게 작성한 파일을 `sites-available`과 심볼릭 링크로 엮어준다.
 
-```
+```bash
 $ ln -s /etc/nginx/sites-enabled/dev.conf /etc/nginx/sites-available/
 $ ln -s /etc/nginx/sites-enabled/prod.conf /etc/nginx/sites-available/
 ```
@@ -143,7 +143,7 @@ $ ln -s /etc/nginx/sites-enabled/prod.conf /etc/nginx/sites-available/
 
 그 다음 nginx를 restart 해주면 설정이 완료된다!
 
-```
+```bash
 # nginx 관련 명령어
 
 $ sudo service nginx restart # nginx 재시작

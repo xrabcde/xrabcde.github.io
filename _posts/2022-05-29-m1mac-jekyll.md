@@ -17,7 +17,7 @@ Chrome 방문기록과 터미널 커맨드 히스토리를 더듬어가며 이�
 
 먼저 brew를 통해 rbenv와 ruby를 설치해주어야 한다.
 
-```
+```bash
 $ brew update
 $ brew install rbenv ruby-build
 ```
@@ -25,7 +25,7 @@ $ brew install rbenv ruby-build
 `rbenv versions`를 입력하면 설치되어있는 버전을 확인할 수 있다.
 m1 맥북에는 기본적으로 rbenv가 설치되어있기 때문에 system 한 개가 뜨고 `*` 표시로 선택되어있는 것을 확인할 수 있다. 
 
-```
+```bash
 $ rbenv versions
 * system
 ```
@@ -33,7 +33,7 @@ $ rbenv versions
 `rbenv install -l` 명령어를 입력하면 설치가능한 rbenv 버전 목록을 확인할 수 있다. 
 자신의 jekyll 블로그 테마의 호환성을 확인해 설치할 버전을 선택하면 된다.
 
-```
+```bash
 $ rbenv install -l 
 ```
 
@@ -44,7 +44,7 @@ $ rbenv install -l
 나는 2.6.10 버전을 설치했다. (이후에 3.1.2로 다시 설치하긴 했지만...)  
 하지만, `rbenv install 2.6.10` 를 입력해 rbenv를 설치하려고 하면 자꾸 아래와 같은 에러가 나오며 설치가 되지 않았다.
 
-```
+```bash
 $ rbenv install 2.6.10
 
 ...
@@ -81,13 +81,13 @@ rvm으로도 시도했지만 잘 되지 않았고...
 그러던 중 `arm64e` 관련 로그로 구글링을 하다가 아래와 같은 명령어를 [시도해보라는 글](https://github.com/rbenv/ruby-build/issues/1700#issuecomment-759893415)을 찾았다.  
 이 글을 참고해 설치를 해보았고
 
-```
+```bash
 $ arch -x86_64 /bin/bash -c 'rbenv install 2.6.0'
 ```
 
 설치가 되고 난 후 터미널 설정을 바꾸어주어야 해서 .zshrc 파일을 수정해주었다.
 
-```
+```bash
 $ vi ~/.zshrc
 
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -98,7 +98,7 @@ $ source ~/.zshrc
 
 이제 다시 아까 입력했던 rbenv versions 명령어를 입력해보면 새로 설치한 2.6.0 버전이 추가된 것을 확인할 수 있다. 하지만 여전히 system 에 * 선택이 되어있으므로 이를 global 명령어를 이용해 바꿔주어야 한다.
 
-```
+```bash
 $ rbenv versions
 
 $ rbenv global 2.6.0
@@ -106,7 +106,7 @@ $ rbenv global 2.6.0
 
 하지만 이후에도 문제가 잘 해결되지 않아서 rbenv를 가장 최신 버전인 3.1.2 버전으로 재설치해주었다. 호환성에 크게 문제가 되지 않는다면 처음부터 그냥 최신 버전을 설치하시길...
 
-```
+```bash
 $ arch -x86_64 /bin/bash -c 'rbenv install 3.1.2'
 
 $ rbenv global 3.1.2
@@ -121,7 +121,7 @@ $ rbenv global 3.1.2
 
 이번엔 [이 글](https://synoti21.github.io/blog%20dev/There-are-no-gemspecs-at-~~-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95-(%EA%B9%83%ED%97%99-%ED%8E%98%EC%9D%B4%EC%A7%80-%EA%B2%8C%EC%8B%9C%ED%95%A0-%EB%95%8C)/)을 참고해 gem 재설치를 시도해보았다.
 
-```
+```bash
 $ sudo gem uninstall sassc
 $ sudo gem install sassc -- --disable-march-tune-native
 $ sudo gem uninstall ffi
@@ -129,7 +129,7 @@ $ sudo gem install ffi
 $ bundle update --bundler
 ```
 
-```
+```bash
 $ bundle install
 ```
 
@@ -143,7 +143,7 @@ You don't have write permissions for the /Library/Ruby/Gems/2.6.0 directory
 
 이런 Permission 에러 같은 경우는 간단히 앞에 sudo를 붙여주는 방법으로 해결이 되었고
 
-```
+```bash
 $ sudo gem install jekyll
 ```
 
@@ -161,7 +161,7 @@ bundler: failed to load command: jekyll (/Users/kakao_ent/.rbenv/versions/3.1.2/
 
 이번에도 [위의 글](https://synoti21.github.io/blog%20dev/There-are-no-gemspecs-at-~~-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95-(%EA%B9%83%ED%97%99-%ED%8E%98%EC%9D%B4%EC%A7%80-%EA%B2%8C%EC%8B%9C%ED%95%A0-%EB%95%8C)/)을 참고해  webrick을 수동으로 추가해주었다.
 
-```
+```bash
 $ bundle add webrick
 ```
 
@@ -175,7 +175,7 @@ $ bundle add webrick
 이 에러는 [이 글](https://chobolife.github.io/blog/2019/08/12/jekyll-theme/)을 참고해 해결할 수 있었다. 
 아래 명령어들을 순서대로 입력했다.
 
-```
+```bash
 $ sudo gem install nokogiri
 $ gem update
 $ bundle update
@@ -198,7 +198,7 @@ NoMethodError: undefined method `full_name' for nil:NilClass
 
 가물가물하지만 이 에러는 [이 글](https://github.com/rubygems/rubygems/issues/5088)을 참고해 해결이 되었던 것 같다.
 
-```
+```bash
 $ bundle install
 ```
 

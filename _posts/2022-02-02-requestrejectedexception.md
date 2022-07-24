@@ -47,7 +47,7 @@ RequestRejectedException으로 구글링했을 때 이 에러를 해결하는 �
 [RequestRejectedExceptionHandler라는 인터페이스를 구현해놓은 PR](https://github.com/spring-projects/spring-security/pull/7052)이 있었다.
 이 PR과 [Spring 공식문서](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/firewall/RequestRejectedHandler.html)를 참고해 사용하던 ControllerAdvice에 아래와 같이 RequestRejectedException handle 코드를 추가했다.
 
-```
+```java
 @RestControllerAdvice
 public class ControllerAdvice implements RequestRejectedHandler {
 

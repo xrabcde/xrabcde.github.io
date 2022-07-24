@@ -11,7 +11,7 @@ comments: true
 이를 구현할 수 있는 방법은 세 가지가 있다.
 
 ### 정적 유틸리티를 사용하는 방법
-```
+```java
 public class SpellChecker {
     private static final Lexicon dictionary = ...;
     
@@ -24,7 +24,7 @@ public class SpellChecker {
 이 방식은 정적 유틸리티를 잘못 사용한 예시다.
 
 ### 싱글턴을 사용하는 방법
-```
+```java
 public class SpellChecker {
     private final Lexicon dictinoary = ...;
     
@@ -44,7 +44,7 @@ public class SpellChecker {
 ### 의존 객체 주입을 사용하는 방법
 의존 객체 주입이란 **인스턴스를 생성할 때 생성자에 필요한 자원을 넘겨주는 방식**이다.
 이 방법은 클래스가 여러 자원 인스턴스를 지원해야 하며, 클라이언트가 원하는 자원을 사용해야 한다는 조건을 만족한다.
-```
+```java
 public class SpellChecker {
     private final Lexicon dictionary;
     

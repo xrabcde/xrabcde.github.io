@@ -12,7 +12,7 @@ comments: true
 사용자는 이 생성자가 자동 생성된 것인지 구분할 수 없다.  
 인스턴스화를 막는 방법은 아주 간단하다.
 **컴파일러가 자동으로 기본 생성자를 만들 수 없도록 private 생성자를 추가해주면 된다.**
-```
+```java
 public class UtilityClass {
     //기본 생성자가 만들어지는 것을 막는다(인스턴스화 방지용).
     private UtilityClass() {
