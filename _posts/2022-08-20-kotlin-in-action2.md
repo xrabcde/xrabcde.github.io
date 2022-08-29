@@ -78,18 +78,16 @@ class Person(val name: String)
 ## enum, when, while, for
 ### 선택 표현과 처리: enum, when
 ```kotlin
-enum class Color (
-	val r: Int, val g: Int, val b: Int
-) {
-	RED(255, 0, 0),
+enum class Color (val r: Int, val g: Int, val b: Int) {
+    RED(255, 0, 0),
     ORANGE(255, 165, 0),
-	YELLOW(255, 255, 0),
+    YELLOW(255, 255, 0),
     GREEN(0, 255, 0),
     BLUE(0, 0, 255),
-	INDIGO(75, 0, 130),
+    INDIGO(75, 0, 130),
     VIOLET(238, 130, 238);
 
-	fun rgb() = (r * 256 + g) * 256 + b
+    fun rgb() = (r * 256 + g) * 256 + b
 }
 ```
 - enum도 클래스와 마찬가지로 생성자와 프로퍼티를 선언한다. 각 enum 상수를 정의할 때는 프로퍼티 값을 지정해야 한다.
