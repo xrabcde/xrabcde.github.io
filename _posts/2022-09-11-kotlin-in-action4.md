@@ -13,6 +13,11 @@ comments: true
 <img src="/assets/img/kotlin_in_action.png" alt="kotlin_in_action.png">
 </div>
 
+### 이 시리즈의 이전글
+- [코틀린인액션 #1 코틀린이란 무엇이며, 왜 필요한가?](https://xrabcde.github.io/kotlin-in-action1/)
+- [코틀린인액션 #2 코틀린 기초](https://xrabcde.github.io/kotlin-in-action2/)
+- [코틀린인액션 #3 함수 정의와 호출](https://xrabcde.github.io/kotlin-in-action3/)
+
 ## 개요
 - 이번 장에서는 코틀린의 인터페이스와 생성자, 다양한 클래스들(data 클래스, object 클래스)에 대해 알아본다.
 

@@ -13,6 +13,10 @@ comments: true
 <img src="/assets/img/kotlin_in_action.png" alt="kotlin_in_action.png">
 </div>
 
+### 이 시리즈의 이전글
+- [코틀린인액션 #1 코틀린이란 무엇이며, 왜 필요한가?](https://xrabcde.github.io/kotlin-in-action1/)
+- [코틀린인액션 #2 코틀린 기초](https://xrabcde.github.io/kotlin-in-action2/)
+
 ## 개요
 - 이번 장에서는 코틀린의 컬렉션에 대해 알아보고, 확장함수, 가변길이 인자, 중위 호출 등을 통해 컬렉션을 다양하게 활용할 수 있는 방법에 대해 살펴보자.
 
@@ -240,3 +244,6 @@ fun saveUser(user: User) {
 
 ## References
 - [코틀린인액션](http://www.kyobobook.co.kr/product/detailViewKor.laf?mallGb=KOR&ejkGb=KOR&barcode=9791161750712)
+
+### 이 시리즈의 다음글
+- [코틀린인액션 #4 클래스, 객체, 인터페이스](https://xrabcde.github.io/kotlin-in-action4/)

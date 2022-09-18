@@ -72,6 +72,10 @@ comments: true
   - 여러 언어로 이루어진 프로젝트를 디버깅하고 서로 다른 언어로 작성된 코드를 언어와 관계없이 한 단계씩 실행할 수 있다
   - 자바 메서드를 리팩터링해도 그 메서드와 관련 있는 코틀린 코드까지 제대로 변경된다. 역으로 코틀린 메서드를 리팩터링해도 자바 코드까지 모두 자동으로 변경된다
 
-
 ## References
 - [코틀린인액션](http://www.kyobobook.co.kr/product/detailViewKor.laf?mallGb=KOR&ejkGb=KOR&barcode=9791161750712)
+
+### 이 시리즈의 다음글
+- [코틀린인액션 #2 코틀린 기초](https://xrabcde.github.io/kotlin-in-action2/)
+- [코틀린인액션 #3 함수 정의와 호출](https://xrabcde.github.io/kotlin-in-action3/)
+- [코틀린인액션 #4 클래스, 객체, 인터페이스](https://xrabcde.github.io/kotlin-in-action4/)

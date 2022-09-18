@@ -13,6 +13,9 @@ comments: true
 <img src="/assets/img/kotlin_in_action.png" alt="kotlin_in_action.png">
 </div>
 
+### 이 시리즈의 이전글
+- [코틀린인액션 #1 코틀린이란 무엇이며, 왜 필요한가?](https://xrabcde.github.io/kotlin-in-action1/)
+
 ## 개요
 - 이번 장에서는 코틀린에서 **변수, 함수, 클래스** 등을 어떻게 선언하는지 살펴보고 프로퍼티라는 개념에 대해 알아본다. 뿐만 아니라, **코틀린의 제어 구조와 예외 처리**에 대해서도 살펴보자.
 
@@ -162,3 +165,7 @@ fun readNumber(reader: BufferedReader) {
 
 ## References
 - [코틀린인액션](http://www.kyobobook.co.kr/product/detailViewKor.laf?mallGb=KOR&ejkGb=KOR&barcode=9791161750712)
+
+### 이 시리즈의 다음글
+- [코틀린인액션 #3 함수 정의와 호출](https://xrabcde.github.io/kotlin-in-action3/)
+- [코틀린인액션 #4 클래스, 객체, 인터페이스](https://xrabcde.github.io/kotlin-in-action4/)
