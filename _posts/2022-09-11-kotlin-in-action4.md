@@ -266,9 +266,9 @@ object Payroll {
 
 ```kotlin
 class Person(val name: String) {
-	companion object Loader {
-		fun fromJSON(jsonText: String) : Person = ...
-	}
+    companion object Loader {
+        fun fromJSON(jsonText: String) : Person = ...
+    }
 }
 
 >>> person = Person.Loader.fromJSON("{name: 'bada'}")
@@ -283,14 +283,14 @@ ara
 
 ```kotlin
 class Person(val name: String) {
-	companion object : JSONFactory<Person> {
-		override fun fromJSON(jsonText: String) : Person = ...
-	}
+    companion object : JSONFactory<Person> {
+        override fun fromJSON(jsonText: String) : Person = ...
+    }
 }
 
 // JSON을 다시 역직렬화에 원소로 만들어내는 추상 팩토리
 fun loadFromJSON<T>(ffactory: JSONFactory<T>): T {
-	...
+    ...
 }
 
 >>> loadFromJSON(Person) // Person 객체를 바로 넘길 수 있음
@@ -301,13 +301,13 @@ fun loadFromJSON<T>(ffactory: JSONFactory<T>): T {
 ```kotlin
 // 비즈니스 로직 모듈
 class Pserson(val firstName: String, val lastName: String) {
-	companion object { // 비어있는 동반 객체 선언
-	}
+    companion object { // 비어있는 동반 객체 선언
+    }
 }
 
 // 클라이언트/서버 통신 모듈
 fun Person.Companion.fromJSON(json: String): Person {
-	... // 확장 함수 선언
+    ... // 확장 함수 선언
 }
 
 >>> val p = Person.fromJSON(json)
