@@ -215,12 +215,12 @@ saveUser(User(1, "", ""))
 ```kotlin
 class User(val id: Int, val name: String, val address: String)
 fun saveUser(user: User) {
-	fun validate(value: String) {
-		if (value.isEmpty()) throw IllegalArgumentException()
-	}
-	validate(user.name) // 로컬 함수를 호출해 각 필드 검증
-	validate(user.address)
-	// user를 데이터베이스에 저장한다
+    fun validate(value: String) {
+        if (value.isEmpty()) throw IllegalArgumentException()
+    }
+    validate(user.name) // 로컬 함수를 호출해 각 필드 검증
+    validate(user.address)
+    // user를 데이터베이스에 저장한다
 }
 ```
 
