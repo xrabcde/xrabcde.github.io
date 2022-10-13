@@ -346,3 +346,6 @@ val listener = object: MouseAdpater() {
 
 ## References
 - [코틀린인액션](http://www.kyobobook.co.kr/product/detailViewKor.laf?mallGb=KOR&ejkGb=KOR&barcode=9791161750712)
+
+### 이 시리즈의 다음글
+- [코틀린인액션 #5 람다로 프로그래밍](https://xrabcde.github.io/kotlin-in-action5/)
