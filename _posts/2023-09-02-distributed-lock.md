@@ -335,7 +335,7 @@ class TicketService(
 동시성 이슈는 실제로 현업에서 빈번히 발생한다. QA 과정에서 발견된다고 해도 재현이 어렵기 때문에 병목지점을 파악하고 해결하기가 쉽지 않다. 이직 면접에서 단골 질문으로 등장하는 키워드인 만큼 한 번쯤은 직접 동시성 이슈가 발생하는 상황을 만들어보고 해결해보면 실제 문제가 발생했을 때 더 유연하게 대처할 수 있겠다. 이 글에서 사용한 예제코드는 [이 레포지토리](https://github.com/xrabcde/distributed-lock)에서 확인할 수 있다. 
 
 ## References
-- [분산락 테스트 소스코드 Github](github.com)
+- [분산락 테스트 소스코드 Github](https://github.com/xrabcde/distributed-lock)
 - [Redis 공식문서 - distributed locks](https://redis.io/docs/manual/patterns/distributed-locks/)
 - [동시성 이슈를 해결하는 여러가지 방법](https://dev-alxndr.tistory.com/45)
 - [Redis 분산락(Distribution Lock)을 구현해 다중화 서버에서 발생하는 동시성 문제 제어하기](https://velog.io/@msung99/Redis-%EB%B6%84%EC%82%B0-%EB%9D%BD%EC%9D%84-%EA%B5%AC%ED%98%84%ED%95%B4-race-condition-%EB%8F%99%EC%8B%9C%EC%84%B1-%EC%9D%B4%EC%8A%88-%ED%95%B4%EA%B2%B0%ED%95%98%EA%B8%B0)
