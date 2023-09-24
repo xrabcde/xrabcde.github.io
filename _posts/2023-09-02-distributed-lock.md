@@ -2,7 +2,7 @@
 layout: post
 title: Spring/동시성 문제 해결을 위한 Redis 분산락 구현하기
 date: 2023-09-02
-excerpt: "Java/Kotlin + Spring 환경에서 동시성 이슈 테스트 방법과 Redis 분산락을 통한 해결과정에 대해 알아보자."
+excerpt: "Spring 환경에서 동시성 이슈 테스트 방법과 Redis 분산락을 통한 해결과정에 대해 알아보자"
 tags: [java, kotlin, spring, redis]
 comments: true
 ---
