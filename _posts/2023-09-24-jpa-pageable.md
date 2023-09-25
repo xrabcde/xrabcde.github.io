@@ -50,7 +50,7 @@ Pageable을 구현해놓은 추상 클래스가 **AbstractPageRequest**이고 �
 <img src="https://github.com/xrabcde/xrabcde.github.io/assets/56033755/c224f4b8-ed1e-43bc-8e30-526e1c2ff20e">
 </div>
 
-Pageable과 Serializable을 구현한 추상 클래스인 AbstractPageRequest은 private 필드로 **page와 size** 값을 갖는다. 이 때, page는 0보다 커야하고 size는 1보다 커야한다.
+Pageable과 Serializable을 구현한 추상 클래스인 AbstractPageRequest은 private 필드로 **page와 size** 값을 갖는다. 이 때, page는 0보다 같거나 커야하고 size는 1보다 같거나 커야한다.
 
 <div style="width:100% !important; margin:0 auto">
 <img src="https://github.com/xrabcde/xrabcde.github.io/assets/56033755/4280b94d-d8af-4307-8211-4e0eaddacca7">
